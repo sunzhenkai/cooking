@@ -1,0 +1,28 @@
+
+++++++++++++++++++++4 byte  && map_replace++++++++++++++++++++
+   'SPARSE_HASH_MAP': 28.4
+    'DENSE_HASH_MAP': 8.5
+ 'STANDARD HASH_MAP': 16.2
+      'STANDARD MAP': 254.3
+          'NARK MAP': 16.8
+
+++++++++++++++++++++8 byte  && map_replace++++++++++++++++++++
+   'SPARSE_HASH_MAP': 31.7
+    'DENSE_HASH_MAP': 8.3
+ 'STANDARD HASH_MAP': 15.9
+      'STANDARD MAP': 276.5
+          'NARK MAP': 20.1
+
+++++++++++++++++++++16 byte  && map_replace++++++++++++++++++++
+   'SPARSE_HASH_MAP': 40.9
+    'DENSE_HASH_MAP': 21.3
+ 'STANDARD HASH_MAP': 22.3
+      'STANDARD MAP': 211.3
+          'NARK MAP': 30.9
+
+++++++++++++++++++++256 byte  && map_replace++++++++++++++++++++
+   'SPARSE_HASH_MAP': 169.7
+    'DENSE_HASH_MAP': 137.5
+ 'STANDARD HASH_MAP': 90.3
+      'STANDARD MAP': 221.8
+          'NARK MAP': 90.1

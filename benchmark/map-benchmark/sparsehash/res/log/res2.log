@@ -1,0 +1,274 @@
+======
+Linux | **** | 3.10.0-514.16.1.el7.x86_64 | #1 SMP Wed Apr 12 15:04:24 UTC 2017 | x86_64
+Average over 10000000 iterations
+Current time (GMT): Thu Nov 29 10:23:33 2018
+
+SPARSE_HASH_MAP (4 byte objects, 10000000 iterations):
+map_grow              179.2 ns  (23421757 hashes, 43421814 copies)
+map_predict/grow       72.8 ns  (10000000 hashes, 30000000 copies)
+map_replace            28.4 ns  (10000000 hashes,        0 copies)
+map_fetch_random      149.7 ns  (10000000 hashes,        0 copies)
+map_fetch_sequential   41.8 ns  (10000000 hashes,        0 copies)
+map_fetch_empty        16.5 ns  (       0 hashes,        0 copies)
+map_remove             50.3 ns  (10000000 hashes, 10000000 copies)
+map_toggle            165.5 ns  (20399999 hashes, 41599996 copies)
+map_iterate             7.0 ns  (       0 hashes,        0 copies)
+
+stresshashfunction map_size=256 stride=1: 278.9ns/insertion
+stresshashfunction map_size=256 stride=256: 202.7ns/insertion
+stresshashfunction map_size=1024 stride=1: 495.6ns/insertion
+stresshashfunction map_size=1024 stride=1024: 509.8ns/insertion
+
+DENSE_HASH_MAP (4 byte objects, 10000000 iterations):
+map_grow               38.0 ns  (26777220 hashes, 113886160 copies)
+map_predict/grow       16.6 ns  (10000000 hashes, 30000000 copies)
+map_replace             8.3 ns  (10000000 hashes,        0 copies)
+map_fetch_random       20.2 ns  (10000000 hashes,        0 copies)
+map_fetch_sequential    5.0 ns  (10000000 hashes,        0 copies)
+map_fetch_empty         4.3 ns  (       0 hashes,        0 copies)
+map_remove              9.6 ns  (10000000 hashes, 10000000 copies)
+map_toggle             46.5 ns  (20624999 hashes, 64999960 copies)
+map_iterate             5.3 ns  (       0 hashes,        0 copies)
+
+stresshashfunction map_size=256 stride=1: 45.6ns/insertion
+stresshashfunction map_size=256 stride=256: 22.2ns/insertion
+stresshashfunction map_size=1024 stride=1: 83.8ns/insertion
+stresshashfunction map_size=1024 stride=1024: 54.5ns/insertion
+
+STANDARD HASH_MAP (4 byte objects, 10000000 iterations):
+map_grow               79.4 ns  (27427396 hashes, 30000000 copies)
+map_predict/grow       50.9 ns  (10000000 hashes, 30000000 copies)
+map_replace            16.4 ns  (10000000 hashes,        0 copies)
+map_fetch_random       71.8 ns  (10000000 hashes,        0 copies)
+map_fetch_sequential   15.8 ns  (10000000 hashes,        0 copies)
+map_fetch_empty        15.2 ns  (10000000 hashes,        0 copies)
+map_remove             36.2 ns  (10000000 hashes,        0 copies)
+map_toggle             75.8 ns  (20000000 hashes, 30000000 copies)
+map_iterate             3.6 ns  (       0 hashes,        0 copies)
+
+stresshashfunction map_size=256 stride=1: 50.8ns/insertion
+stresshashfunction map_size=256 stride=256: 52.8ns/insertion
+stresshashfunction map_size=1024 stride=1: 58.8ns/insertion
+stresshashfunction map_size=1024 stride=1024: 58.0ns/insertion
+
+STANDARD MAP (4 byte objects, 10000000 iterations):
+map_grow              437.9 ns  (       0 hashes, 10000000 copies)
+map_predict/grow      436.5 ns  (       0 hashes, 10000000 copies)
+map_replace           251.6 ns  (       0 hashes,        0 copies)
+map_fetch_random     1416.8 ns  (       0 hashes,        0 copies)
+map_fetch_sequential  268.8 ns  (       0 hashes,        0 copies)
+map_fetch_empty         3.9 ns  (       0 hashes,        0 copies)
+map_remove            228.0 ns  (       0 hashes,        0 copies)
+map_toggle             81.0 ns  (       0 hashes, 10000000 copies)
+map_iterate            22.7 ns  (       0 hashes,        0 copies)
+
+stresshashfunction map_size=256 stride=1: 59.0ns/insertion
+stresshashfunction map_size=256 stride=256: 61.6ns/insertion
+stresshashfunction map_size=1024 stride=1: 73.2ns/insertion
+stresshashfunction map_size=1024 stride=1024: 71.3ns/insertion
+
+NARK MAP (4 byte objects, 10000000 iterations):
+map_grow               43.8 ns  (20066444 hashes, 36777215 copies)
+map_predict/grow       37.7 ns  (20066444 hashes, 36777215 copies)
+map_replace            17.3 ns  (10000000 hashes, 10000000 copies)
+map_fetch_random       52.0 ns  (10000000 hashes,        0 copies)
+map_fetch_sequential   15.4 ns  (10000000 hashes,        0 copies)
+map_fetch_empty        13.2 ns  (10000000 hashes,        0 copies)
+map_remove             23.6 ns  (15000000 hashes,  5000000 copies)
+map_toggle             35.5 ns  (20000000 hashes, 20000000 copies)
+map_iterate             1.7 ns  (       0 hashes,        0 copies)
+
+stresshashfunction map_size=256 stride=1: 44.7ns/insertion
+stresshashfunction map_size=256 stride=256: 46.6ns/insertion
+stresshashfunction map_size=1024 stride=1: 38.4ns/insertion
+stresshashfunction map_size=1024 stride=1024: 40.7ns/insertion
+
+SPARSE_HASH_MAP (8 byte objects, 5000000 iterations):
+map_grow              228.6 ns  (11710870 hashes, 21710924 copies)
+map_predict/grow      117.4 ns  ( 5000000 hashes, 15000000 copies)
+map_replace            30.9 ns  ( 5000000 hashes,        0 copies)
+map_fetch_random      137.7 ns  ( 5000000 hashes,        0 copies)
+map_fetch_sequential   44.7 ns  ( 5000000 hashes,        0 copies)
+map_fetch_empty        17.0 ns  (       0 hashes,        0 copies)
+map_remove             56.0 ns  ( 5000000 hashes,  5000000 copies)
+map_toggle            179.1 ns  (10199999 hashes, 20799996 copies)
+map_iterate             6.6 ns  (       0 hashes,        0 copies)
+
+stresshashfunction map_size=256 stride=1: 275.0ns/insertion
+stresshashfunction map_size=256 stride=256: 210.0ns/insertion
+stresshashfunction map_size=1024 stride=1: 486.6ns/insertion
+stresshashfunction map_size=1024 stride=1024: 506.8ns/insertion
+
+DENSE_HASH_MAP (8 byte objects, 5000000 iterations):
+map_grow               54.3 ns  (13388611 hashes, 56943112 copies)
+map_predict/grow       18.6 ns  ( 5000000 hashes, 15000000 copies)
+map_replace             8.6 ns  ( 5000000 hashes,        0 copies)
+map_fetch_random       28.6 ns  ( 5000000 hashes,        0 copies)
+map_fetch_sequential    7.4 ns  ( 5000000 hashes,        0 copies)
+map_fetch_empty         6.2 ns  (       0 hashes,        0 copies)
+map_remove             10.8 ns  ( 5000000 hashes,  5000000 copies)
+map_toggle             51.3 ns  (10312499 hashes, 32499960 copies)
+map_iterate             5.6 ns  (       0 hashes,        0 copies)
+
+stresshashfunction map_size=256 stride=1: 48.2ns/insertion
+stresshashfunction map_size=256 stride=256: 20.0ns/insertion
+stresshashfunction map_size=1024 stride=1: 84.1ns/insertion
+stresshashfunction map_size=1024 stride=1024: 50.2ns/insertion
+
+STANDARD HASH_MAP (8 byte objects, 5000000 iterations):
+map_grow               80.9 ns  (13582537 hashes, 15000000 copies)
+map_predict/grow       51.7 ns  ( 5000000 hashes, 15000000 copies)
+map_replace            16.1 ns  ( 5000000 hashes,        0 copies)
+map_fetch_random       74.0 ns  ( 5000000 hashes,        0 copies)
+map_fetch_sequential   18.0 ns  ( 5000000 hashes,        0 copies)
+map_fetch_empty        16.5 ns  ( 5000000 hashes,        0 copies)
+map_remove             36.7 ns  ( 5000000 hashes,        0 copies)
+map_toggle             79.4 ns  (10000000 hashes, 15000000 copies)
+map_iterate             3.8 ns  (       0 hashes,        0 copies)
+
+stresshashfunction map_size=256 stride=1: 52.3ns/insertion
+stresshashfunction map_size=256 stride=256: 57.1ns/insertion
+stresshashfunction map_size=1024 stride=1: 59.1ns/insertion
+stresshashfunction map_size=1024 stride=1024: 60.2ns/insertion
+
+STANDARD MAP (8 byte objects, 5000000 iterations):
+map_grow              472.2 ns  (       0 hashes,  5000000 copies)
+map_predict/grow      463.4 ns  (       0 hashes,  5000000 copies)
+map_replace           270.3 ns  (       0 hashes,        0 copies)
+map_fetch_random     1399.0 ns  (       0 hashes,        0 copies)
+map_fetch_sequential  263.3 ns  (       0 hashes,        0 copies)
+map_fetch_empty         4.3 ns  (       0 hashes,        0 copies)
+map_remove            224.7 ns  (       0 hashes,        0 copies)
+map_toggle             78.6 ns  (       0 hashes,  5000000 copies)
+map_iterate            28.2 ns  (       0 hashes,        0 copies)
+
+stresshashfunction map_size=256 stride=1: 64.6ns/insertion
+stresshashfunction map_size=256 stride=256: 64.4ns/insertion
+stresshashfunction map_size=1024 stride=1: 73.7ns/insertion
+stresshashfunction map_size=1024 stride=1024: 74.0ns/insertion
+
+NARK MAP (8 byte objects, 5000000 iterations):
+map_grow               63.1 ns  ( 5000000 hashes, 18388607 copies)
+map_predict/grow       45.9 ns  ( 5000000 hashes, 18388607 copies)
+map_replace            19.3 ns  ( 5000000 hashes,  5000000 copies)
+map_fetch_random       59.2 ns  ( 5000000 hashes,        0 copies)
+map_fetch_sequential   17.7 ns  ( 5000000 hashes,        0 copies)
+map_fetch_empty        15.3 ns  ( 5000000 hashes,        0 copies)
+map_remove             26.5 ns  ( 5000000 hashes,  2500000 copies)
+map_toggle             42.9 ns  (10000000 hashes, 10000000 copies)
+map_iterate             2.2 ns  (       0 hashes,        0 copies)
+
+stresshashfunction map_size=256 stride=1: 44.1ns/insertion
+stresshashfunction map_size=256 stride=256: 43.8ns/insertion
+stresshashfunction map_size=1024 stride=1: 38.6ns/insertion
+stresshashfunction map_size=1024 stride=1024: 40.1ns/insertion
+
+SPARSE_HASH_MAP (16 byte objects, 2500000 iterations):
+map_grow              317.9 ns  ( 5855426 hashes, 10855477 copies)
+map_predict/grow      182.7 ns  ( 2500000 hashes,  7500000 copies)
+map_replace            38.7 ns  ( 2500000 hashes,        0 copies)
+map_fetch_random      148.2 ns  ( 2500000 hashes,        0 copies)
+map_fetch_sequential   54.8 ns  ( 2500000 hashes,        0 copies)
+map_fetch_empty        17.5 ns  (       0 hashes,        0 copies)
+map_remove             62.6 ns  ( 2500000 hashes,  2500000 copies)
+map_toggle            194.3 ns  ( 5099999 hashes, 10399996 copies)
+map_iterate             6.5 ns  (       0 hashes,        0 copies)
+
+DENSE_HASH_MAP (16 byte objects, 2500000 iterations):
+map_grow               96.3 ns  ( 6694306 hashes, 28471584 copies)
+map_predict/grow       30.6 ns  ( 2500000 hashes,  7500000 copies)
+map_replace            19.7 ns  ( 2500000 hashes,        0 copies)
+map_fetch_random       45.0 ns  ( 2500000 hashes,        0 copies)
+map_fetch_sequential   18.1 ns  ( 2500000 hashes,        0 copies)
+map_fetch_empty         6.8 ns  (       0 hashes,        0 copies)
+map_remove             26.0 ns  ( 2500000 hashes,  2500000 copies)
+map_toggle             74.8 ns  ( 5156249 hashes, 16249960 copies)
+map_iterate             6.4 ns  (       0 hashes,        0 copies)
+
+STANDARD HASH_MAP (16 byte objects, 2500000 iterations):
+map_grow              108.2 ns  ( 6726830 hashes,  7500000 copies)
+map_predict/grow       64.1 ns  ( 2500000 hashes,  7500000 copies)
+map_replace            22.3 ns  ( 2500000 hashes,        0 copies)
+map_fetch_random      101.1 ns  ( 2500000 hashes,        0 copies)
+map_fetch_sequential   23.9 ns  ( 2500000 hashes,        0 copies)
+map_fetch_empty        22.2 ns  ( 2500000 hashes,        0 copies)
+map_remove             44.4 ns  ( 2500000 hashes,        0 copies)
+map_toggle             95.9 ns  ( 5000000 hashes,  7500000 copies)
+map_iterate             6.6 ns  (       0 hashes,        0 copies)
+
+STANDARD MAP (16 byte objects, 2500000 iterations):
+map_grow              399.7 ns  (       0 hashes,  2500000 copies)
+map_predict/grow      362.9 ns  (       0 hashes,  2500000 copies)
+map_replace           213.6 ns  (       0 hashes,        0 copies)
+map_fetch_random     1198.4 ns  (       0 hashes,        0 copies)
+map_fetch_sequential  247.6 ns  (       0 hashes,        0 copies)
+map_fetch_empty         4.1 ns  (       0 hashes,        0 copies)
+map_remove            210.9 ns  (       0 hashes,        0 copies)
+map_toggle             76.7 ns  (       0 hashes,  2500000 copies)
+map_iterate            18.3 ns  (       0 hashes,        0 copies)
+
+NARK MAP (16 byte objects, 2500000 iterations):
+map_grow               72.5 ns  ( 2500000 hashes,  9194303 copies)
+map_predict/grow       65.8 ns  ( 2500000 hashes,  9194303 copies)
+map_replace            31.1 ns  ( 2500000 hashes,  2500000 copies)
+map_fetch_random       75.7 ns  ( 2500000 hashes,        0 copies)
+map_fetch_sequential   22.5 ns  ( 2500000 hashes,        0 copies)
+map_fetch_empty        19.5 ns  ( 2500000 hashes,        0 copies)
+map_remove             35.1 ns  ( 2500000 hashes,  1250000 copies)
+map_toggle             66.3 ns  ( 5000000 hashes,  5000000 copies)
+map_iterate             2.4 ns  (       0 hashes,        0 copies)
+
+SPARSE_HASH_MAP (256 byte objects, 312500 iterations):
+map_grow             1324.4 ns  (  731912 hashes,  1356954 copies)
+map_predict/grow      923.2 ns  (  312500 hashes,   937500 copies)
+map_replace           169.2 ns  (  312500 hashes,        0 copies)
+map_fetch_random      179.4 ns  (  312500 hashes,        0 copies)
+map_fetch_sequential  162.4 ns  (  312500 hashes,        0 copies)
+map_fetch_empty        41.2 ns  (       0 hashes,        0 copies)
+map_remove            337.2 ns  (  312500 hashes,   312500 copies)
+map_toggle            504.8 ns  (  637499 hashes,  1299996 copies)
+map_iterate            22.0 ns  (       0 hashes,        0 copies)
+
+DENSE_HASH_MAP (256 byte objects, 312500 iterations):
+map_grow              607.2 ns  (  836787 hashes,  3558980 copies)
+map_predict/grow      276.5 ns  (  312500 hashes,   937500 copies)
+map_replace           132.5 ns  (  312500 hashes,        0 copies)
+map_fetch_random      119.9 ns  (  312500 hashes,        0 copies)
+map_fetch_sequential  119.5 ns  (  312500 hashes,        0 copies)
+map_fetch_empty        30.4 ns  (       0 hashes,        0 copies)
+map_remove            235.0 ns  (  312500 hashes,   312500 copies)
+map_toggle            286.8 ns  (  644531 hashes,  2031240 copies)
+map_iterate            36.3 ns  (       0 hashes,        0 copies)
+
+STANDARD HASH_MAP (256 byte objects, 312500 iterations):
+map_grow              271.1 ns  (  817789 hashes,   937500 copies)
+map_predict/grow      151.4 ns  (  312500 hashes,   937500 copies)
+map_replace            91.2 ns  (  312500 hashes,        0 copies)
+map_fetch_random      174.2 ns  (  312500 hashes,        0 copies)
+map_fetch_sequential  118.9 ns  (  312500 hashes,        0 copies)
+map_fetch_empty        66.8 ns  (  312500 hashes,        0 copies)
+map_remove            111.4 ns  (  312500 hashes,        0 copies)
+map_toggle            268.1 ns  (  625000 hashes,   937500 copies)
+map_iterate            13.4 ns  (       0 hashes,        0 copies)
+
+STANDARD MAP (256 byte objects, 312500 iterations):
+map_grow              273.2 ns  (       0 hashes,   312500 copies)
+map_predict/grow      307.7 ns  (       0 hashes,   312500 copies)
+map_replace           219.3 ns  (       0 hashes,        0 copies)
+map_fetch_random      672.2 ns  (       0 hashes,        0 copies)
+map_fetch_sequential  222.3 ns  (       0 hashes,        0 copies)
+map_fetch_empty        24.8 ns  (       0 hashes,        0 copies)
+map_remove            183.3 ns  (       0 hashes,        0 copies)
+map_toggle            169.7 ns  (       0 hashes,   312500 copies)
+map_iterate            60.1 ns  (       0 hashes,        0 copies)
+
+NARK MAP (256 byte objects, 312500 iterations):
+map_grow              245.0 ns  (  312500 hashes,   836787 copies)
+map_predict/grow      245.9 ns  (  312500 hashes,   836787 copies)
+map_replace            86.0 ns  (  312500 hashes,        0 copies)
+map_fetch_random      154.2 ns  (  312500 hashes,        0 copies)
+map_fetch_sequential   68.4 ns  (  312500 hashes,        0 copies)
+map_fetch_empty        55.3 ns  (  312500 hashes,        0 copies)
+map_remove            107.3 ns  (  312500 hashes,   156250 copies)
+map_toggle            144.3 ns  (  625000 hashes,   312500 copies)
+map_iterate            11.3 ns  (       0 hashes,        0 copies)

@@ -1,0 +1,21 @@
+server:
+  port: 10800
+
+spring:
+  application:
+    name: UserConsumer
+  cloud:
+    consul:
+      discovery:
+        register: false
+
+dubbo:
+  application:
+    name: UserConsumer
+  cloud:
+    subscribed-services: UserProvider
+  protocols:
+    dubbo:
+      port: -1
+  consumer:
+    check: false
