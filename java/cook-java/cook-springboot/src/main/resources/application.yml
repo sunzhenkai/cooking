@@ -1,0 +1,13 @@
+spring:
+  redis:
+    database: 0
+    lettuce:
+      pool:
+        min-idle: 5
+        max-idle: 10
+        max-active: 8
+        max-wait: 1ms
+      shutdown-timeout: 100ms
+    cluster:
+      nodes: localhost:50000
+    password: secret:redis-passwd
