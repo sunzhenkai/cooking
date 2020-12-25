@@ -8,6 +8,11 @@ spring:
         max-active: 8
         max-wait: 1ms
       shutdown-timeout: 100ms
-    cluster:
-      nodes: localhost:50000
-    password: secret:redis-passwd
+    host: 127.0.0.1
+    port: 6379
+#    cluster:
+#      nodes: localhost:6379
+    password:
+
+test:
+  password: secret:test-decrypt-passwd

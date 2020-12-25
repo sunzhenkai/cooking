@@ -19,6 +19,7 @@
         <module>cook-spring-cloud-provider</module>
         <module>cook-spring-cloud-consumer</module>
         <module>cook-springboot</module>
+        <module>cook-esper</module>
     </modules>
 
     <properties>
