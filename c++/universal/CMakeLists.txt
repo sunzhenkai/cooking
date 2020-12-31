@@ -31,7 +31,7 @@ find_library(LEVELDB leveldb ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 find_library(GTEST gtest ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 find_library(SSL ssl ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 find_library(CRYPTO crypto ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
-find_library(BRPC libbrpc.a ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
+find_library(BRPC brpc ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 
 add_definitions(-DBRPC_WITH_GLOG=1)
 
@@ -40,6 +40,7 @@ set(EXTERNAL_LIB ${BOOST_SYSTEM} ${THRIFT} ${THRIFT_NB} ${PROTO_BUFFER} ${PROTO_
 
 file(GLOB SOURCE_FILES ${DEPS_THRIFT_GEN_DIR}/*.cpp)
 add_library(service-lib ${SOURCE_FILES})
+#message("service-lib: ${SOURCE_FILES}")
 
 add_executable(universal src/main.cpp)
 
