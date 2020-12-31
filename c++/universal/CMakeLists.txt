@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(universal)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "-std=c++11 -g -mavx -maes -O3 -w -fPIC -fno-omit-frame-pointer")
 
@@ -27,13 +27,16 @@ find_library(PROTOC protoc ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 find_library(THRIFT thrift ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 find_library(THRIFT_NB thriftnb ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 find_library(EVENT event ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
-find_library(BISON y ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 find_library(LEVELDB leveldb ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 find_library(GTEST gtest ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
-find_library(BRPC brpc ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
+find_library(SSL ssl ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
+find_library(CRYPTO crypto ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
+find_library(BRPC libbrpc.a ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 
-set(EXTERNAL_LIB ${BOOST_SYSTEM} ${THRIFT} ${THRIFT_NB} ${PROTO_BUFFER} ${PROTO_LITE} ${PROTOC} ${EVENT}
-        ${GFLAGS} ${GLOG} ${BISON} ${GTEST} ${LEVELDB} ${BRPC})
+add_definitions(-DBRPC_WITH_GLOG=1)
+
+set(EXTERNAL_LIB ${BOOST_SYSTEM} ${THRIFT} ${THRIFT_NB} ${PROTO_BUFFER} ${PROTO_LITE} ${PROTOC} ${EVENT} ${GFLAGS}
+        ${GLOG} ${GTEST} ${LEVELDB} ${SSL} ${CRYPTO} ${BRPC})
 
 file(GLOB SOURCE_FILES ${DEPS_THRIFT_GEN_DIR}/*.cpp)
 add_library(service-lib ${SOURCE_FILES})
@@ -41,4 +44,4 @@ add_library(service-lib ${SOURCE_FILES})
 add_executable(universal src/main.cpp)
 
 add_executable(thrift-server src/brpc/thrift_server.cpp)
-target_link_libraries(thrift-server service-lib ${EXTERNAL_LIB})
+target_link_libraries(thrift-server service-lib ${EXTERNAL_LIB} -v)
