@@ -35,12 +35,10 @@ find_library(BRPC brpc ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 
 add_definitions(-DBRPC_WITH_GLOG=1)
 
-set(EXTERNAL_LIB ${BOOST_SYSTEM} ${THRIFT} ${THRIFT_NB} ${PROTO_BUFFER} ${PROTO_LITE} ${PROTOC} ${EVENT} ${GFLAGS}
-        ${GLOG} ${GTEST} ${LEVELDB} ${SSL} ${CRYPTO} ${BRPC})
+set(EXTERNAL_LIB ${BOOST_SYSTEM} ${PROTO_BUFFER} ${PROTO_LITE} ${PROTOC} ${EVENT} ${GFLAGS} ${GLOG} ${GTEST} ${SSL} ${CRYPTO} ${LEVELDB} ${THRIFT} ${THRIFT_NB} ${BRPC})
 
 file(GLOB SOURCE_FILES ${DEPS_THRIFT_GEN_DIR}/*.cpp)
 add_library(service-lib ${SOURCE_FILES})
-#message("service-lib: ${SOURCE_FILES}")
 
 add_executable(universal src/main.cpp)
 
