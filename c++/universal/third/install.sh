@@ -11,7 +11,7 @@ make_thread_num="$(tool::get_cpu_num)"
 
 export LDFLAGS="${LDFLAGS} -L${deps_dir}/lib"
 export CPPFLAGS="${CPPFLAGS} -I${deps_dir}/include"
-export CXXFLAGS="${CXXFLAGS} -I${deps_dir}/include -std=c++11 -fPIC -mavx -maes -O3 -Wno-sign-compare -g -Wno-narrowing -Wno-unused-function -Wno-unused-variable"
+export CXXFLAGS="${CXXFLAGS} -std=c++11 -fPIC -mavx -maes -O3 -Wno-sign-compare -g -Wno-narrowing -Wno-unused-function -Wno-unused-variable"
 export CFLAGS=-fPIC
 
 export LD_LIBRARY_PATH="${deps_dir}/lib:${LD_LIBRARY_PATH}"
@@ -33,7 +33,8 @@ flag_leveldb="Y"
 flag_googletest="Y"
 flag_brpc="Y"
 
-thrift_version=0.11.0
+thrift_version=0.9.3.1
+# thrift_version=0.11.0
 
 ## clean
 [[ $flag_clean ]] && (
