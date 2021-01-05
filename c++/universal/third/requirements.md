@@ -10,3 +10,9 @@ $ brew install automake autoconf libtool pkg-config gnu-getopt coreutils
 echo 'export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"' >> ~/.zshrc # ~/.bash_profile
 source ~/.zshrc
 ```
+
+# ubuntu
+```shell
+$ sudo apt install cmake automake pkg-config libtool flex
+``` 
+- `flex` for thriftç

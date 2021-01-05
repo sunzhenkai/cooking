@@ -9,10 +9,14 @@ build_dir=${work_dir}/build
 
 make_thread_num="$(tool::get_cpu_num)"
 
-export LDFLAGS="-L${deps_dir}/lib"
-export CPPFLAGS="-I${deps_dir}/include"
-export CXXFLAGS="$CXXFLAGS -std=c++11 -fPIC -mavx -maes -O3 -Wno-sign-compare -g -Wno-narrowing -Wno-unused-function -Wno-unused-variable"
+export LDFLAGS="$LDFLAGS -L${deps_dir}/lib"
+export CPPFLAGS="$CPPFLAGS -I${deps_dir}/include"
+export CXXFLAGS="$CXXFLAGS -I${deps_dir}/include -std=c++11 -fPIC -mavx -maes -O3 -Wno-sign-compare -g -Wno-narrowing -Wno-unused-function -Wno-unused-variable"
 export CFLAGS=-fPIC
+
+export LD_LIBRARY_PATH="${deps_dir}/lib"
+export LIBRARY_PATH="${deps_dir}/lib"
+export C_INCLUDE_PATH="${deps_dir}/include"
 export PATH=${deps_dir}/bin:$PATH
 
 flag_clean="Y"
