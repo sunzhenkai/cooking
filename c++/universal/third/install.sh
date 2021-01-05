@@ -33,8 +33,8 @@ flag_leveldb="Y"
 flag_googletest="Y"
 flag_brpc="Y"
 
-thrift_version=0.9.3.1
-# thrift_version=0.11.0
+# thrift_version=0.9.3.1
+thrift_version=0.11.0
 
 ## clean
 [[ $flag_clean ]] && (
@@ -122,6 +122,7 @@ if [ ! -z $flag_thrift ]; then
   tar -zxf "${src_dir}/thrift-$thrift_version.tar.gz" || exit
   ls -l
   cd thrift-$thrift_version || exit
+  export CXXFLAGS="${CXXFLAGS} -lssl -lcrypto"
   (./bootstrap.sh && ./configure --prefix="${deps_dir}" --with-boost="${deps_dir}" --with-libevent="${deps_dir}" \
     --with-ruby=no --with-python=no --with-java=no --with-go=no --with-perl=no --with-php=no --with-csharp=no \
     --with-haskell=no --with-erlang=no --with-lua=no --with-nodejs=no --with-qt4=no && make -j ${make_thread_num} && make install) || exit
