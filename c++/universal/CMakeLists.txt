@@ -3,7 +3,11 @@ project(universal)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "-std=c++11 -g -mavx -maes -O3 -w -fPIC -fno-omit-frame-pointer")
+set(CMAKE_CXX_FLAGS "-std=c++11 -g -O3 -w -fPIC -fno-omit-frame-pointer -Wno-sign-compare")
+
+#SET(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+#SET(BUILD_SHARED_LIBS OFF)
+#SET(CMAKE_EXE_LINKER_FLAGS "-static")
 
 set(DEPS_DIR ${CMAKE_SOURCE_DIR}/third/deps)
 set(DEPS_LIB_DIR ${DEPS_DIR}/lib)
@@ -35,12 +39,13 @@ find_library(BRPC brpc ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 
 add_definitions(-DBRPC_WITH_GLOG=1)
 
-set(EXTERNAL_LIB ${BOOST_SYSTEM} ${PROTO_BUFFER} ${PROTO_LITE} ${PROTOC} ${EVENT} ${GFLAGS} ${GLOG} ${GTEST} ${SSL} ${CRYPTO} ${LEVELDB} ${THRIFT} ${THRIFT_NB} ${BRPC})
+set(EXTERNAL_LIB ${SSL} ${CRYPTO} ${BOOST_SYSTEM} ${PROTO_BUFFER} ${PROTO_LITE} ${PROTOC} ${EVENT} ${GFLAGS} ${GLOG} ${GTEST} ${LEVELDB} ${THRIFT_NB} ${THRIFT} ${BRPC})
 
-file(GLOB SOURCE_FILES ${DEPS_THRIFT_GEN_DIR}/*.cpp)
-add_library(service-lib ${SOURCE_FILES})
+file(GLOB SOURCE_FILES ${DEPS_THRIFT_GEN_DIR}/*.cpp src/*.cpp src/brpc/*.cpp)
+add_library(service-lib STATIC ${SOURCE_FILES})
 
 add_executable(universal src/main.cpp)
+target_link_libraries(universal ${EXTERNAL_LIB} -v)
 
 add_executable(thrift-server src/brpc/thrift_server.cpp)
 target_link_libraries(thrift-server service-lib ${EXTERNAL_LIB} -v)

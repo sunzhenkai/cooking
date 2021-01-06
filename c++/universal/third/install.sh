@@ -9,9 +9,9 @@ build_dir=${work_dir}/build
 
 make_thread_num="$(tool::get_cpu_num)"
 
-export LDFLAGS="${LDFLAGS} -L${deps_dir}/lib"
-export CPPFLAGS="${CPPFLAGS} -I${deps_dir}/include"
-export CXXFLAGS="${CXXFLAGS} -std=c++11 -fPIC -mavx -maes -O3 -Wno-sign-compare -g -Wno-narrowing -Wno-unused-function -Wno-unused-variable"
+export LDFLAGS="-L${deps_dir}/lib"
+export CPPFLAGS="-I${deps_dir}/include"
+export CXXFLAGS="-std=c++11 -fPIC -mavx -maes -O3 -Wno-sign-compare -g -Wno-narrowing -Wno-unused-function -Wno-unused-variable"
 export CFLAGS=-fPIC
 
 export LD_LIBRARY_PATH="${deps_dir}/lib:${LD_LIBRARY_PATH}"
@@ -19,18 +19,18 @@ export LIBRARY_PATH="${deps_dir}/lib:${LIBRARY_PATH}"
 export C_INCLUDE_PATH="${deps_dir}/include:${C_INCLUDE_PATH}"
 export PATH=${deps_dir}/bin:$PATH
 
-flag_clean="Y"
-flag_concat_boost="Y"
-flag_openssl="Y"
-flag_gflags="Y"
-flag_glog="Y"
-flag_boost="Y"
-flag_event="Y"
-flag_proto="Y"
-flag_bison="Y"
-flag_thrift="Y"
-flag_leveldb="Y"
-flag_googletest="Y"
+#flag_clean="Y"
+#flag_concat_boost="Y"
+#flag_openssl="Y"
+#flag_gflags="Y"
+#flag_glog="Y"
+#flag_boost="Y"
+#flag_event="Y"
+#flag_proto="Y"
+#flag_bison="Y"
+#flag_thrift="Y"
+#flag_leveldb="Y"
+#flag_googletest="Y"
 flag_brpc="Y"
 
 # thrift_version=0.9.3.1
@@ -122,7 +122,7 @@ if [ ! -z $flag_thrift ]; then
   tar -zxf "${src_dir}/thrift-$thrift_version.tar.gz" || exit
   ls -l
   cd thrift-$thrift_version || exit
-  export CXXFLAGS="${CXXFLAGS} -lssl -lcrypto"
+  # export CXXFLAGS="${CXXFLAGS} -lssl -lcrypto"
   (./bootstrap.sh && ./configure --prefix="${deps_dir}" --with-boost="${deps_dir}" --with-libevent="${deps_dir}" \
     --with-ruby=no --with-python=no --with-java=no --with-go=no --with-perl=no --with-php=no --with-csharp=no \
     --with-haskell=no --with-erlang=no --with-lua=no --with-nodejs=no --with-qt4=no && make -j ${make_thread_num} && make install) || exit
@@ -157,7 +157,7 @@ if [ ! -z $flag_brpc ]; then
   cd "${build_dir}" || exit
   tar -zxf "${src_dir}/incubator-brpc-0.9.7.tar.gz" || exit
   cd "${build_dir}"/incubator-brpc-0.9.7 || exit
-  bash config_brpc.sh --headers="${deps_dir}/include/" --libs="${deps_dir}/lib/"
+  bash config_brpc.sh --headers="${deps_dir}/include/" --libs="${deps_dir}/lib/" --with-glog --with-thrift
   (make -j ${make_thread_num}) || exit
   cp -a output/include/* "${deps_dir}/include/"
   cp -a output/lib/* "${deps_dir}/lib/"

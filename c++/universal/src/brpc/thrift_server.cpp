@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
     brpc::Server server;
     brpc::ServerOptions options;
 
-    options.thrift_service = new EchoServiceImpl;
+    options.thrift_service = new EchoServiceImpl();
     options.idle_timeout_sec = FLAGS_idle_timeout_s;
     options.max_concurrency = FLAGS_max_concurrency;
 
