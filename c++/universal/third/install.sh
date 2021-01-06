@@ -11,7 +11,7 @@ make_thread_num="$(tool::get_cpu_num)"
 
 export LDFLAGS="-L${deps_dir}/lib"
 export CPPFLAGS="-I${deps_dir}/include"
-export CXXFLAGS="-std=c++11 -fPIC -mavx -maes -O3 -Wno-sign-compare -g -Wno-narrowing -Wno-unused-function -Wno-unused-variable"
+export CXXFLAGS="-std=c++11 -fPIC -mavx -maes -O3 -Wno-sign-compare -g -Wno-narrowing -Wno-unused-function -Wno-unused-variable -Wno-error=unused-command-line-argument"
 export CFLAGS=-fPIC
 
 export LD_LIBRARY_PATH="${deps_dir}/lib:${LD_LIBRARY_PATH}"
@@ -70,8 +70,9 @@ if [ ! -z $flag_gflags ]; then
 
   mkdir build
   cd build || exit
+#  cmake -DCMAKE_INSTALL_PREFIX:PATH="${deps_dir}" .. || exit
   cmake -DCMAKE_INSTALL_PREFIX:PATH="${deps_dir}" -DBUILD_SHARED_LIBS=1 .. || exit
-#  cmake -DCMAKE_INSTALL_PREFIX:PATH="${deps_dir}" -DBUILD_SHARED_LIBS=1 -DBUILD_STATIC_LIBS=1 .. || exit
+  #  cmake -DCMAKE_INSTALL_PREFIX:PATH="${deps_dir}" -DBUILD_SHARED_LIBS=1 -DBUILD_STATIC_LIBS=1 .. || exit
   make -j ${make_thread_num} && make install || exit
 #  (cmake . && make -j ${make_thread_num}) || exit
 #  cp -a include/* "${deps_dir}"/include/
@@ -128,7 +129,10 @@ if [ ! -z $flag_thrift ]; then
   tar -zxf "${src_dir}/thrift-$thrift_version.tar.gz" || exit
   ls -l
   cd thrift-$thrift_version || exit
-  export CXXFLAGS="${CXXFLAGS} -lssl -lcrypto"
+
+  if [[ "$(tool::os_type)" != "darwin" ]]; then
+    export CXXFLAGS="${CXXFLAGS} -lssl -lcrypto"
+  fi
   (./bootstrap.sh && ./configure --prefix="${deps_dir}" --with-boost="${deps_dir}" --with-libevent="${deps_dir}" \
     --with-ruby=no --with-python=no --with-java=no --with-go=no --with-perl=no --with-php=no --with-csharp=no \
     --with-haskell=no --with-erlang=no --with-lua=no --with-nodejs=no --with-qt4=no && make -j ${make_thread_num} && make install) || exit
