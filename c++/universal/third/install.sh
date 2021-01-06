@@ -67,9 +67,15 @@ if [ ! -z $flag_gflags ]; then
   cd "${build_dir}" || exit
   tar -zxf "${src_dir}/gflags-2.2.2.tar.gz" || exit
   cd "${build_dir}"/gflags-2.2.2 || exit
-  (cmake . && make -j ${make_thread_num}) || exit
-  cp -a include/* "${deps_dir}"/include/
-  cp -a lib/* "${deps_dir}"/lib/
+
+  mkdir build
+  cd build || exit
+  cmake -DCMAKE_INSTALL_PREFIX:PATH="${deps_dir}" -DBUILD_SHARED_LIBS=1 .. || exit
+#  cmake -DCMAKE_INSTALL_PREFIX:PATH="${deps_dir}" -DBUILD_SHARED_LIBS=1 -DBUILD_STATIC_LIBS=1 .. || exit
+  make -j ${make_thread_num} && make install || exit
+#  (cmake . && make -j ${make_thread_num}) || exit
+#  cp -a include/* "${deps_dir}"/include/
+#  cp -a lib/* "${deps_dir}"/lib/
 fi
 
 # glog

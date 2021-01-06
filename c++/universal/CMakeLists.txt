@@ -50,7 +50,7 @@ if (${GFLAGS_NS} STREQUAL "GFLAGS_NAMESPACE")
 endif ()
 message("gflags namespace: " ${GFLAGS_NS})
 
-set(CMAKE_CXX_FLAGS "-std=c++11 -g -O3 -w -fPIC -fno-omit-frame-pointer -Wno-sign-compare -pthread  -DGFLAGS_NS=${GFLAGS_NS}")
+set(CMAKE_CXX_FLAGS "-std=c++11 -g -O3 -w -fPIC -fno-omit-frame-pointer -Wno-sign-compare -pthread -DGFLAGS_NS=${GFLAGS_NS}")
 set(EXTERNAL_LIB ${SSL} ${CRYPTO} ${BOOST_SYSTEM} ${PROTO_BUFFER} ${PROTO_LITE} ${PROTOC} ${EVENT} ${GFLAGS} ${GLOG} ${GTEST} ${LEVELDB} ${THRIFT_NB} ${THRIFT} ${BRPC})
 
 add_definitions(-DBRPC_WITH_GLOG=1)
