@@ -20,6 +20,7 @@
         <module>cook-spring-cloud-consumer</module>
         <module>cook-springboot</module>
         <module>cook-esper</module>
+        <module>cook-design-pattern</module>
     </modules>
 
     <properties>

@@ -21,7 +21,7 @@ include_directories(${DEPS_INCLUDE_DIR})
 include_directories(${DEPS_INCLUDE_DIR}/thrift)
 include_directories(${DEPS_THRIFT_GEN_DIR})
 
-find_library(GFLAGS gflags ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
+find_library(GFLAGS libgflags.a ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 find_library(GLOG glog ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 find_library(BOOST_SYSTEM boost_system ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 find_library(PROTO_BUFFER protobuf ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
