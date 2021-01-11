@@ -11,15 +11,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(DEPS_DIR ${CMAKE_SOURCE_DIR}/third/deps)
 set(DEPS_LIB_DIR ${DEPS_DIR}/lib)
 set(DEPS_INCLUDE_DIR ${DEPS_DIR}/include)
-set(DEPS_THRIFT_GEN_DIR ${CMAKE_SOURCE_DIR}/thrift/gen-cpp)
+set(SRC_THRIFT_GEN_DIR ${CMAKE_SOURCE_DIR}/thrift/gen-cpp)
+set(SRC_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
 
 message(STATUS "DEPS_DIR = " ${DEPS_DIR})
 message(STATUS "DEPS_INCLUDE_DIR = " ${DEPS_INCLUDE_DIR})
-message(STATUS "DEPS_THRIFT_GEN_DIR = " ${DEPS_THRIFT_GEN_DIR})
+message(STATUS "SRC_THRIFT_GEN_DIR = " ${SRC_THRIFT_GEN_DIR})
+message(STATUS "SRC_INCLUDE_DIR = " ${SRC_INCLUDE_DIR})
 
 include_directories(${DEPS_INCLUDE_DIR})
 include_directories(${DEPS_INCLUDE_DIR}/thrift)
-include_directories(${DEPS_THRIFT_GEN_DIR})
+include_directories(${SRC_THRIFT_GEN_DIR})
+include_directories(${SRC_INCLUDE_DIR})
 
 find_library(GFLAGS gflags ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 find_library(GLOG glog ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
@@ -55,11 +58,14 @@ set(EXTERNAL_LIB ${SSL} ${CRYPTO} ${BOOST_SYSTEM} ${PROTO_BUFFER} ${PROTO_LITE} 
 
 add_definitions(-DBRPC_WITH_GLOG=1)
 
-file(GLOB SOURCE_FILES ${DEPS_THRIFT_GEN_DIR}/*.cpp src/*.cpp src/brpc/*.cpp)
+file(GLOB SOURCE_FILES ${SRC_THRIFT_GEN_DIR}/*.cpp src/*.cpp src/brpc/*.cpp)
 add_library(service-lib STATIC ${SOURCE_FILES})
 
 add_executable(universal src/main.cpp)
 target_link_libraries(universal ${EXTERNAL_LIB} -v)
 
 add_executable(thrift-server src/brpc/thrift_server.cpp)
+target_link_libraries(thrift-server service-lib ${EXTERNAL_LIB} -v)
+
+add_executable(brpc-echo-service src/brpc/brpc_echo_service.cpp)
 target_link_libraries(thrift-server service-lib ${EXTERNAL_LIB} -v)

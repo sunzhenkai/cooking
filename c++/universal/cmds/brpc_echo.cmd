@@ -1,0 +1,2 @@
+--port=10000
+--service_name=brpc_echo
