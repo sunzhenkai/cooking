@@ -24,7 +24,7 @@ include_directories(${DEPS_INCLUDE_DIR}/thrift)
 include_directories(${SRC_THRIFT_GEN_DIR})
 include_directories(${SRC_INCLUDE_DIR})
 
-find_library(GFLAGS libgflags.a ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
+find_library(GFLAGS gflags ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 find_library(GLOG glog ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 find_library(BOOST_SYSTEM boost_system ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
 find_library(PROTO_BUFFER protobuf ${DEPS_LIB_DIR} NO_DEFAULT_PATH)
@@ -68,4 +68,10 @@ add_executable(thrift-server src/brpc/thrift_server.cpp)
 target_link_libraries(thrift-server service-lib ${EXTERNAL_LIB} -v)
 
 add_executable(brpc-echo-service src/brpc/brpc_echo_service.cpp)
-target_link_libraries(thrift-server service-lib ${EXTERNAL_LIB} -v)
+target_link_libraries(brpc-echo-service service-lib ${EXTERNAL_LIB} -v)
+
+add_executable(gflags-test-foo src/brpc/gflags_test_foo.cpp)
+target_link_libraries(gflags-test-foo ${EXTERNAL_LIB} -v)
+
+add_executable(gflags-test-bar src/brpc/gflags_test_bar.cpp)
+target_link_libraries(gflags-test-bar ${EXTERNAL_LIB} -v)
