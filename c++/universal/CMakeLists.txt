@@ -58,7 +58,7 @@ set(EXTERNAL_LIB ${SSL} ${CRYPTO} ${BOOST_SYSTEM} ${PROTO_BUFFER} ${PROTO_LITE} 
 
 add_definitions(-DBRPC_WITH_GLOG=1)
 
-file(GLOB SOURCE_FILES ${SRC_THRIFT_GEN_DIR}/*.cpp src/*.cpp src/brpc/*.cpp)
+file(GLOB SOURCE_FILES ${SRC_THRIFT_GEN_DIR}/*.cpp src/*.cpp src/brpc/*.cpp src/gflags/*.cpp)
 add_library(service-lib STATIC ${SOURCE_FILES})
 
 add_executable(universal src/main.cpp)
@@ -70,8 +70,8 @@ target_link_libraries(thrift-server service-lib ${EXTERNAL_LIB} -v)
 add_executable(brpc-echo-service src/brpc/brpc_echo_service.cpp)
 target_link_libraries(brpc-echo-service service-lib ${EXTERNAL_LIB} -v)
 
-add_executable(gflags-test-foo src/brpc/gflags_test_foo.cpp)
+add_executable(gflags-test-foo src/gflags/gflags_test_foo.cpp)
 target_link_libraries(gflags-test-foo ${EXTERNAL_LIB} -v)
 
-add_executable(gflags-test-bar src/brpc/gflags_test_bar.cpp)
+add_executable(gflags-test-bar src/gflags/gflags_test_bar.cpp)
 target_link_libraries(gflags-test-bar ${EXTERNAL_LIB} -v)
