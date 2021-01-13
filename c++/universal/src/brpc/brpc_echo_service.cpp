@@ -3,8 +3,10 @@
 //
 
 #include <iostream>
+#include "brpc/flags.h"
 
-int main() {
-    std::cout << "HELLO BRPC" << std::endl;
+int main(int argc, char *args[]) {
+    ::gflags::ParseCommandLineFlags(&argc, &args, true);
+    std::cout << "PORT: " << ::universal::FLAGS_port << std::endl;
     return 0;
 }

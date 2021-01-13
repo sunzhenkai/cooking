@@ -5,10 +5,11 @@
 #ifndef UNIVERSAL_FLAGS_H
 #define UNIVERSAL_FLAGS_H
 
+#include <gflags/gflags.h>
 
-class flags {
 
-};
-
+namespace universal {
+    DECLARE_int32(port);
+}  // namespace universal
 
 #endif //UNIVERSAL_FLAGS_H
