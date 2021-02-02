@@ -19,19 +19,20 @@ export LIBRARY_PATH="${deps_dir}/lib:${LIBRARY_PATH}"
 export C_INCLUDE_PATH="${deps_dir}/include:${C_INCLUDE_PATH}"
 export PATH=${deps_dir}/bin:$PATH
 
-flag_clean="Y"
-flag_concat_boost="Y"
-flag_openssl="Y"
-flag_gflags="Y"
-flag_glog="Y"
-flag_boost="Y"
-flag_event="Y"
-flag_proto="Y"
-flag_bison="Y"
-flag_thrift="Y"
-flag_leveldb="Y"
-flag_googletest="Y"
-flag_brpc="Y"
+#flag_clean="Y"
+#flag_concat_boost="Y"
+#flag_openssl="Y"
+#flag_gflags="Y"
+#flag_glog="Y"
+#flag_boost="Y"
+#flag_event="Y"
+#flag_proto="Y"
+#flag_bison="Y"
+#flag_thrift="Y"
+#flag_leveldb="Y"
+#flag_googletest="Y"
+#flag_brpc="Y"
+flag_flex="Y"
 
 # thrift_version=0.9.3.1
 thrift_version=0.11.0
@@ -70,7 +71,7 @@ if [ ! -z $flag_gflags ]; then
 
   mkdir build
   cd build || exit
-#  cmake -DCMAKE_INSTALL_PREFIX:PATH="${deps_dir}" .. || exit
+  #  cmake -DCMAKE_INSTALL_PREFIX:PATH="${deps_dir}" .. || exit
   cmake -DCMAKE_INSTALL_PREFIX:PATH="${deps_dir}" -DBUILD_SHARED_LIBS=1 .. || exit
   #  cmake -DCMAKE_INSTALL_PREFIX:PATH="${deps_dir}" -DBUILD_SHARED_LIBS=1 -DBUILD_STATIC_LIBS=1 .. || exit
   make -j ${make_thread_num} && make install || exit
@@ -172,6 +173,14 @@ if [ ! -z $flag_brpc ]; then
   cp -a output/include/* "${deps_dir}/include/"
   cp -a output/lib/* "${deps_dir}/lib/"
   cp -a output/bin/* "${deps_dir}/lib/"
+fi
+
+# flex
+if [ -n "$flag_flex" ]; then
+  cd "${build_dir}" || exit
+  tar -zxf "${src_dir}/flex-2.6.4.tar.gz" || exit
+  cd "${build_dir}/flex-2.6.4" || exit
+  (./autogen.sh && ./configure --prefix="${deps_dir}" && make -j ${make_thread_num} && make install) || exit
 fi
 
 echo "All is done."

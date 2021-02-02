@@ -5,6 +5,8 @@ import java.util.function.Supplier;
 
 public class FunctionTest {
 
+    // Function<A, B> : 一个参数 + 返回值
+    // Supplier<A>    : 无参数 + 返回值
     static class FC implements Function<String, String> {
         private final Function<String, String> f;
         private final Supplier<Long> spl;
