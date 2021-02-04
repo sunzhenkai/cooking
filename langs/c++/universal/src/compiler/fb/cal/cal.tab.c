@@ -91,6 +91,8 @@
 #line 1 "cal.y"
 
 #include <stdio.h>
+int yylex();
+void yyerror(char *s);
 
 
 /* Enabling traces.  */
@@ -124,7 +126,7 @@ typedef int YYSTYPE;
 
 
 /* Line 216 of yacc.c.  */
-#line 128 "cal.tab.c"
+#line 130 "cal.tab.c"
 
 #ifdef short
 # undef short
@@ -410,8 +412,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    12,    12,    13,    16,    17,    18,    21,    22,    23,
-      26,    27
+       0,    14,    14,    15,    18,    19,    20,    23,    24,    25,
+      28,    29
 };
 #endif
 
@@ -1315,38 +1317,38 @@ yyreduce:
   switch (yyn)
     {
         case 3:
-#line 13 "cal.y"
+#line 15 "cal.y"
     { printf("= %d\n", (yyvsp[(2) - (3)])); ;}
     break;
 
   case 5:
-#line 17 "cal.y"
+#line 19 "cal.y"
     { (yyval) = (yyvsp[(1) - (3)]) + (yyvsp[(3) - (3)]); ;}
     break;
 
   case 6:
-#line 18 "cal.y"
+#line 20 "cal.y"
     { (yyval) = (yyvsp[(1) - (3)]) - (yyvsp[(3) - (3)]); ;}
     break;
 
   case 8:
-#line 22 "cal.y"
+#line 24 "cal.y"
     { (yyval) = (yyvsp[(1) - (3)]) * (yyvsp[(3) - (3)]); ;}
     break;
 
   case 9:
-#line 23 "cal.y"
+#line 25 "cal.y"
     { (yyval) = (yyvsp[(1) - (3)]) / (yyvsp[(3) - (3)]); ;}
     break;
 
   case 11:
-#line 27 "cal.y"
+#line 29 "cal.y"
     { (yyval) = (yyvsp[(2) - (2)]) >= 0 ? (yyvsp[(2) - (2)]) : -(yyvsp[(2) - (2)]); ;}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1350 "cal.tab.c"
+#line 1352 "cal.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1560,12 +1562,13 @@ yyreturn:
 }
 
 
-#line 30 "cal.y"
+#line 32 "cal.y"
 
 
-void main(int argc, char **argv)
+int main(int argc, char **argv)
 {
     yyparse();
+    return 0;
 }
 
 void yyerror(char *s)

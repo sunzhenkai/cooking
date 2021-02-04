@@ -1,5 +1,5 @@
 %{
-enum TokenType {
+enum yytokentype {
     NUMBER = 258,
     ADD = 259,
     SUB = 260,
@@ -21,7 +21,7 @@ int yylval;
 [ \t] { }
 .   { printf("Mystery character %c\n", *yytext); }
 %%
-int main(int argc, char **argv)
+/*int main(int argc, char **argv)
 {
     int tok;
     while (tok = yylex()) {
@@ -29,4 +29,4 @@ int main(int argc, char **argv)
         if (tok == NUMBER) printf(" = %d\n", yylval);
         else printf("\n");
     }
-}
+}*/

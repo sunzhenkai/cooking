@@ -454,7 +454,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "cal.l"
 #line 2 "cal.l"
-enum TokenType {
+enum yytokentype {
     NUMBER = 258,
     ADD = 259,
     SUB = 260,
@@ -1782,7 +1782,7 @@ void yyfree (void * ptr )
 #line 23 "cal.l"
 
 
-int main(int argc, char **argv)
+/*int main(int argc, char **argv)
 {
     int tok;
     while (tok = yylex()) {
@@ -1790,4 +1790,4 @@ int main(int argc, char **argv)
         if (tok == NUMBER) printf(" = %d\n", yylval);
         else printf("\n");
     }
-}
+}*/

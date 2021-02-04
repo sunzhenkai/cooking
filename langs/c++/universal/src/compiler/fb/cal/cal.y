@@ -1,5 +1,7 @@
 %{
 #include <stdio.h>
+int yylex();
+void yyerror(char *s);
 %}
 
 /* 声明 Tokens */
@@ -29,9 +31,10 @@ term: NUMBER
 
 %%
 
-void main(int argc, char **argv)
+int main(int argc, char **argv)
 {
     yyparse();
+    return 0;
 }
 
 void yyerror(char *s)
