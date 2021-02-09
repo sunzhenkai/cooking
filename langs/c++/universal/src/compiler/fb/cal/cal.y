@@ -1,12 +1,13 @@
 %{
 #include <stdio.h>
+#include <math.h>
 int yylex();
 void yyerror(char *s);
 %}
 
 /* 声明 Tokens */
 %token NUMBER
-%token ADD SUB MUL DIV ABS
+%token ADD SUB MUL DIV ABS POW
 %token EOL
 
 %%
@@ -23,6 +24,7 @@ exp: factor
 factor: term
     | factor MUL term { $$ = $1 * $3; }
     | factor DIV term { $$ = $1 / $3; }
+    | factor POW term   { $$ = pow($1, $3); }
     ;
 
 term: NUMBER
