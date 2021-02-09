@@ -29,6 +29,12 @@ void wii::WCDriver::parse(std::istream &iss) {
     }
 }
 
+void wii::WCDriver::print() {
+    std::cout << "chars: " << chars << std::endl
+        << "words: " << words << std::endl
+        << "lines: " << lines << std::endl;
+}
+
 void wii::WCDriver::parse(const char *const fn) {
     assert(fn != nullptr);
     std::ifstream inf(fn);

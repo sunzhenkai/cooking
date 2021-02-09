@@ -23,6 +23,7 @@ namespace wii {
         void add_line();
         void add_char();
         void add_word(const std::string &word);
+        void print();
 
     private:
         std::size_t chars = 0;

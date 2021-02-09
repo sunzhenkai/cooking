@@ -7,16 +7,27 @@ LD_LIBRARY_PATH=$(LIB_DIR)
 LIBRARY_PATH=$(LIB_DIR)
 DYLD_LIBRARY_PATH=$(LIB_DIR)
 CXXFLAGS=-std=c++11 -L $(LIB_DIR) -I $(INCLUDE_DIR) -Wno-unused-command-line-argument
-FBF=parser lexer
-PJF=driver
-FILES=$(addsuffix .cpp, $(PJF))
+
+FBF=parser lexer   	# bison & flex source files
+PJF=driver main		# for main programs
+FILES=$(addsuffix .cpp, $(PJF))		# source files
+OPF=$(addsuffix .o, $(PJF))		# main programs output
+FBO=$(addsuffix .o, $(FBF))		# parser & lexer output file
+EXE=wc
 
 .PHONY: wc
 
 all: wc
 
 wc: $(FILES)
-	$(MAKE) $(FBF)
+	@export PATH=$(PATH) && \
+		export DYLD_LIBRARY_PATH=$(DYLD_LIBRARY_PATH) && \
+		export LIBRARY_PATH=$(LIBRARY_PATH) && \
+		$(MAKE) $(FBF) && \
+		$(MAKE) $(OPF)  && \
+		$(CXX) $(CXXFLAGS) -o $(EXE) $(OPF) $(FBO) && \
+		echo "[PROCESS] compile wc done"
+
 
 parser: parser.yy
 	@export PATH=$(PATH) && \
@@ -36,4 +47,8 @@ lexer: lexer.l
       	echo "[PROCESS] compile lexer done"
 
 clean:
-	@rm parser.tab.* parser.output location.hh position.hh stack.hh lexer.yy.cc
+	@rm parser.tab.* parser.output location.hh position.hh stack.hh lexer.yy.cc \
+		$(FBO) $(OPF) $(EXE)
+
+test:
+	@wc wc.in
