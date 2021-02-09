@@ -27,12 +27,12 @@ export PATH=${deps_dir}/bin:$PATH
 #flag_boost="Y"
 #flag_event="Y"
 #flag_proto="Y"
-#flag_bison="Y"
+flag_bison="Y"
 #flag_thrift="Y"
 #flag_leveldb="Y"
 #flag_googletest="Y"
 #flag_brpc="Y"
-flag_flex="Y"
+#flag_flex="Y"
 
 # thrift_version=0.9.3.1
 thrift_version=0.11.0

@@ -6,15 +6,15 @@ LD_LIBRARY_PATH=$(LIB_DIR)
 LIBRARY_PATH=$(LIB_DIR)
 DYLD_LIBRARY_PATH=$(LIB_DIR)
 
-.PHONY: calc
+#.PHONY: wc-file
 
-calc: cal.l cal.y
-	@bison -v -d cal.y
-	@flex cal.l
+all: wc-file
+
+wc-file: wc-file.l
+	@flex wc-file.l
+	@export DYLD_LIBRARY_PATH=$(DYLD_LIBRARY_PATH) && \
+    		export LIBRARY_PATH=$(LIBRARY_PATH) && \
+    		gcc -Wno-parentheses -L $(LIB_DIR) -o wc-file lex.yy.c -lfl
 	@export DYLD_LIBRARY_PATH=$(DYLD_LIBRARY_PATH) && \
 		export LIBRARY_PATH=$(LIBRARY_PATH) && \
-		gcc -Wno-parentheses -L $(LIB_DIR) -o calc cal.tab.c lex.yy.c -lfl
-	@export DYLD_LIBRARY_PATH=$(DYLD_LIBRARY_PATH) && \
-		export LIBRARY_PATH=$(LIBRARY_PATH) && \
-	./calc
-
+		./wc-file

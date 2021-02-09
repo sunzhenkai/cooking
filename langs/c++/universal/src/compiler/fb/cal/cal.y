@@ -5,10 +5,10 @@ int yylex();
 void yyerror(char *s);
 %}
 
-/* 声明 Tokens */
+/* 声明 Tokens; 在这里的声明要和 cal.l 声明的 yytokentype 顺序一致 */
 %token NUMBER
-%token ADD SUB MUL DIV ABS POW
-%token EOL
+%token ADD SUB MUL DIV ABS EOL
+%token POW
 
 %%
 
@@ -24,7 +24,7 @@ exp: factor
 factor: term
     | factor MUL term { $$ = $1 * $3; }
     | factor DIV term { $$ = $1 / $3; }
-    | factor POW term   { $$ = pow($1, $3); }
+    | term POW term   { $$ = pow($1, $3); }
     ;
 
 term: NUMBER

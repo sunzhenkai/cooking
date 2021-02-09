@@ -72,8 +72,8 @@
      MUL = 261,
      DIV = 262,
      ABS = 263,
-     POW = 264,
-     EOL = 265
+     EOL = 264,
+     POW = 265
    };
 #endif
 /* Tokens.  */
@@ -83,8 +83,8 @@
 #define MUL 261
 #define DIV 262
 #define ABS 263
-#define POW 264
-#define EOL 265
+#define EOL 264
+#define POW 265
 
 
 
@@ -344,7 +344,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   22
+#define YYLAST   20
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  11
@@ -406,9 +406,9 @@ static const yytype_uint8 yyprhs[] =
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const yytype_int8 yyrhs[] =
 {
-      12,     0,    -1,    -1,    12,    13,    10,    -1,    14,    -1,
+      12,     0,    -1,    -1,    12,    13,     9,    -1,    14,    -1,
       13,     4,    14,    -1,    13,     5,    14,    -1,    15,    -1,
-      14,     6,    15,    -1,    14,     7,    15,    -1,    14,     9,
+      14,     6,    15,    -1,    14,     7,    15,    -1,    15,    10,
       15,    -1,     3,    -1,     5,     3,    -1,     8,    15,     8,
       -1
 };
@@ -427,7 +427,7 @@ static const yytype_uint8 yyrline[] =
 static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "NUMBER", "ADD", "SUB", "MUL", "DIV",
-  "ABS", "POW", "EOL", "$accept", "calclist", "exp", "factor", "term", 0
+  "ABS", "EOL", "POW", "$accept", "calclist", "exp", "factor", "term", 0
 };
 #endif
 
@@ -473,18 +473,18 @@ static const yytype_int8 yydefgoto[] =
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
-#define YYPACT_NINF -6
+#define YYPACT_NINF -8
 static const yytype_int8 yypact[] =
 {
-      -6,    12,    -6,    -6,     1,     0,    -3,     7,    -6,    -6,
-      -2,     0,     0,    -6,     0,     0,     0,    -6,     7,     7,
-      -6,    -6,    -6
+      -8,    12,    -8,    -8,    -1,    -2,     9,     1,     6,    -8,
+      11,    -2,    -2,    -8,    -2,    -2,    -2,    -8,     1,     1,
+      -8,    -8,    -8
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -6,    -6,    -6,    10,    -5
+      -8,    -8,    -8,    -7,    -5
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -494,16 +494,16 @@ static const yytype_int8 yypgoto[] =
 #define YYTABLE_NINF -1
 static const yytype_uint8 yytable[] =
 {
-      10,    11,    12,     3,     9,     4,    17,    13,     5,    20,
-      21,    22,     2,    14,    15,     3,    16,     4,     0,     0,
-       5,    18,    19
+      10,     3,     9,     4,    18,    19,     5,    14,    15,    20,
+      21,    22,     2,    11,    12,     3,    16,     4,    13,    17,
+       5
 };
 
-static const yytype_int8 yycheck[] =
+static const yytype_uint8 yycheck[] =
 {
-       5,     4,     5,     3,     3,     5,     8,    10,     8,    14,
-      15,    16,     0,     6,     7,     3,     9,     5,    -1,    -1,
-       8,    11,    12
+       5,     3,     3,     5,    11,    12,     8,     6,     7,    14,
+      15,    16,     0,     4,     5,     3,    10,     5,     9,     8,
+       8
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -511,7 +511,7 @@ static const yytype_int8 yycheck[] =
 static const yytype_uint8 yystos[] =
 {
        0,    12,     0,     3,     5,     8,    13,    14,    15,     3,
-      15,     4,     5,    10,     6,     7,     9,     8,    14,    14,
+      15,     4,     5,     9,     6,     7,    10,     8,    14,    14,
       15,    15,    15
 };
 

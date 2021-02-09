@@ -45,8 +45,8 @@
      MUL = 261,
      DIV = 262,
      ABS = 263,
-     POW = 264,
-     EOL = 265
+     EOL = 264,
+     POW = 265
    };
 #endif
 /* Tokens.  */
@@ -56,8 +56,8 @@
 #define MUL 261
 #define DIV 262
 #define ABS 263
-#define POW 264
-#define EOL 265
+#define EOL 264
+#define POW 265
 
 
 
