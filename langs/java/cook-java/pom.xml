@@ -21,6 +21,9 @@
         <module>cook-springboot</module>
         <module>cook-esper</module>
         <module>cook-design-pattern</module>
+        <module>cook-spring-cloud-alibaba</module>
+        <module>cook-thrift-base</module>
+        <module>cook-thrift-sample</module>
     </modules>
 
     <properties>
