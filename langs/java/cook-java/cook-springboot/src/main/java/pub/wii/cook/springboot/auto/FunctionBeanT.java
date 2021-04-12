@@ -18,8 +18,8 @@ public class FunctionBeanT {
 
     @PostConstruct
     public void init() throws InterruptedException {
-        Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(() -> {
-            System.out.println(f.apply("RUN INIT"));
-        }, 1, 1, TimeUnit.SECONDS);
+        // Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(() -> {
+        //     System.out.println(f.apply("RUN INIT"));
+        // }, 1, 1, TimeUnit.SECONDS);
     }
 }

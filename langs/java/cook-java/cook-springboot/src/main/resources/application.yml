@@ -16,3 +16,4 @@ spring:
 
 test:
   password: secret:test-decrypt-passwd
+

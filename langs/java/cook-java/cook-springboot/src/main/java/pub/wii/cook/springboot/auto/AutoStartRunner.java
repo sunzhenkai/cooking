@@ -10,8 +10,8 @@ import java.util.concurrent.TimeUnit;
 public class AutoStartRunner implements CommandLineRunner {
     @Override
     public void run(String... args) {
-        Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(() -> {
-            System.out.println("RUN AUTO START RUNNER");
-        }, 0, 1, TimeUnit.SECONDS);
+        // Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(() -> {
+        //     System.out.println("RUN AUTO START RUNNER");
+        // }, 0, 1, TimeUnit.SECONDS);
     }
 }

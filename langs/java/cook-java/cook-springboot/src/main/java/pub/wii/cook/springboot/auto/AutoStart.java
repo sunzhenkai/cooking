@@ -11,8 +11,8 @@ public class AutoStart {
 
     @PostConstruct
     public void init() {
-        Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(() -> {
-            System.out.println("RUN INIT");
-        }, 0, 1, TimeUnit.SECONDS);
+        // Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(() -> {
+        //     System.out.println("RUN INIT");
+        // }, 0, 1, TimeUnit.SECONDS);
     }
 }

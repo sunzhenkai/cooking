@@ -14,7 +14,6 @@
         <module>cook-sample</module>
         <module>cook-base</module>
         <module>cook-lucene</module>
-        <module>cook-dubbo</module>
         <module>cook-spring-cloud-base</module>
         <module>cook-spring-cloud-provider</module>
         <module>cook-spring-cloud-consumer</module>
