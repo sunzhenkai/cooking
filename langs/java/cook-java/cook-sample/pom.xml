@@ -89,5 +89,12 @@
             <artifactId>config</artifactId>
             <version>1.3.2</version>
         </dependency>
+
+        <!-- discovery -->
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-x-discovery</artifactId>
+            <version>2.8.0</version>
+        </dependency>
     </dependencies>
 </project>
