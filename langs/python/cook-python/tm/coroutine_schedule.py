@@ -26,13 +26,10 @@ class Scheduler:
     @classmethod
     def schedule(cls, name: str, delay: int, interval: int, cb: Callable, *args, **kwargs):
         assert name not in cls.cache, 'duplicate scheduler with name ' + name
-        try:
-            threading.Thread(target=cls._schedule_wrapper,
-                             args=(name, delay, interval, cb, args, kwargs),
-                             daemon=True).start()
-        except (InterruptedError, KeyboardInterrupt, Exception, SystemExit):
-            print('.....')
-            pass
+        threading.Thread(target=cls._schedule_wrapper,
+                         args=(name, delay, interval, cb, args, kwargs),
+                         daemon=True).start()
+
         cls.cache.add(name)
 
     @classmethod
@@ -48,6 +45,10 @@ def cbk(a, b, c):
 if __name__ == '__main__':
     Scheduler.schedule('first', 1, 1, cbk, 'a', 'b', c='c')
     Scheduler.schedule('second', 1, 1, cbk, 'd', 'e', c='f')
-    time.sleep(5)
+    time.sleep(3)
     Scheduler.stop('first')
-    time.sleep(10)
+    try:
+        while True:
+            pass
+    except KeyboardInterrupt:
+        pass
