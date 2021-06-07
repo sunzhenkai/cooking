@@ -3,11 +3,11 @@ import asyncio
 import threading
 import time
 from datetime import datetime
-from typing import Callable
+from typing import Callable, Set
 
 
 class Scheduler:
-    cache: set[str] = set()
+    cache: Set[str] = set()
 
     @classmethod
     async def _do_schedule(cls, name: str, delay: int, interval: int, cb: Callable, args, kwargs):
