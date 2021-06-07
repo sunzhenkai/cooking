@@ -16,3 +16,6 @@
 **/consul-linux
 **/*.iml
 **/.ipynb_checkpoints
+
+__pycache__
+*.pyc
