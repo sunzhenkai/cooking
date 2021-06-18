@@ -5,16 +5,17 @@ import tornado.httpserver
 import tornado.ioloop
 
 from engine.custome_application import RouterApplication, BaseApplication
-from handler.benchmark_handler import TornadoCoroutineHandler, NativeCoroutineHandler, NoCoroutineHandler, \
-    NativeCoroutineTaskHandler, NativeCoroutineTaskTruncationHandler
+# from handler.benchmark_handler import TornadoCoroutineHandler, NativeCoroutineHandler, NoCoroutineHandler, \
+#     NativeCoroutineTaskHandler, NativeCoroutineTaskTruncationHandler
+from handler.benchmark_handler import NoCoroutineHandler
 
 
 def create_app():
     url_map = [
-        (r'/api/benchmark/coroutine/tornado', TornadoCoroutineHandler, {}),
-        (r'/api/benchmark/coroutine/native', NativeCoroutineHandler, {}),
-        (r'/api/benchmark/coroutine/task', NativeCoroutineTaskHandler, {}),
-        (r'/api/benchmark/coroutine/truncation', NativeCoroutineTaskTruncationHandler, {}),
+        # (r'/api/benchmark/coroutine/tornado', TornadoCoroutineHandler, {}),
+        # (r'/api/benchmark/coroutine/native', NativeCoroutineHandler, {}),
+        # (r'/api/benchmark/coroutine/task', NativeCoroutineTaskHandler, {}),
+        # (r'/api/benchmark/coroutine/truncation', NativeCoroutineTaskTruncationHandler, {}),
         (r'/api/benchmark/coroutine/none', NoCoroutineHandler, {}),
     ]
 
