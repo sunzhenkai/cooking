@@ -1,13 +1,16 @@
 # coding: utf-8
+import asyncio
 import signal
 
 import tornado.httpserver
 import tornado.ioloop
+import tornado.platform.asyncio
 
 from engine.custome_application import RouterApplication, BaseApplication
 # from handler.benchmark_handler import TornadoCoroutineHandler, NativeCoroutineHandler, NoCoroutineHandler, \
 #     NativeCoroutineTaskHandler, NativeCoroutineTaskTruncationHandler
 from handler.benchmark_handler import NoCoroutineHandler
+from handler.timeout_handler import TimeoutHandler
 
 
 def create_app():
@@ -17,8 +20,11 @@ def create_app():
         # (r'/api/benchmark/coroutine/task', NativeCoroutineTaskHandler, {}),
         # (r'/api/benchmark/coroutine/truncation', NativeCoroutineTaskTruncationHandler, {}),
         (r'/api/benchmark/coroutine/none', NoCoroutineHandler, {}),
+        (r'/api/cook/timeout', TimeoutHandler, {}),
     ]
 
+    asyncio.set_event_loop_policy(
+        tornado.platform.asyncio.AnyThreadEventLoopPolicy())
     return RouterApplication(url_map)
 
 
