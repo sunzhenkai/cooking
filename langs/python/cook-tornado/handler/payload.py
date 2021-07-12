@@ -3,6 +3,7 @@ import asyncio
 import uuid
 
 from tornado import gen
+from tornado.concurrent import run_on_executor
 
 
 @gen.coroutine
@@ -47,3 +48,9 @@ def tornado_async_payload():
 
 async def sleep_payload():
     await asyncio.sleep(.06)
+
+
+@run_on_executor
+def heavy_blocking_task():
+    for i in range(1000000000):
+        pass

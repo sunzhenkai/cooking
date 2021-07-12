@@ -1,6 +1,7 @@
 # coding: utf-8
 import asyncio
 import signal
+from concurrent.futures import ThreadPoolExecutor
 
 import tornado.httpserver
 import tornado.ioloop
@@ -10,6 +11,9 @@ from engine.custome_application import RouterApplication, BaseApplication
 # from handler.benchmark_handler import TornadoCoroutineHandler, NativeCoroutineHandler, NoCoroutineHandler, \
 #     NativeCoroutineTaskHandler, NativeCoroutineTaskTruncationHandler
 from handler.benchmark_handler import NoCoroutineHandler
+from handler.heavy_task.block_main_ioloop_handler import BlockMainIOLoopHandler
+from handler.heavy_task.thread_pool_handler import ThreadPoolHandler
+from handler.heavy_task.thread_pool_timeout_handler import ThreadPoolTimeoutHandler
 from handler.timeout_handler import TimeoutHandler
 
 
@@ -21,11 +25,18 @@ def create_app():
         # (r'/api/benchmark/coroutine/truncation', NativeCoroutineTaskTruncationHandler, {}),
         (r'/api/benchmark/coroutine/none', NoCoroutineHandler, {}),
         (r'/api/cook/timeout', TimeoutHandler, {}),
+        (r'/api/cook/heavy/block', BlockMainIOLoopHandler, {}),
+        (r'/api/cook/heavy/pool', ThreadPoolHandler, {}),
+        (r'/api/cook/heavy/timeout', ThreadPoolTimeoutHandler, {}),
     ]
 
     asyncio.set_event_loop_policy(
         tornado.platform.asyncio.AnyThreadEventLoopPolicy())
     return RouterApplication(url_map)
+
+
+def cb():
+    print('periodic cb')
 
 
 def run_app(app: BaseApplication, port=9040):
@@ -37,4 +48,6 @@ def run_app(app: BaseApplication, port=9040):
     server.bind(port)
     server.start()
     tornado.ioloop.PeriodicCallback(app.try_exit, 300).start()
+    tornado.ioloop.PeriodicCallback(cb, 1000).start()
+    tornado.ioloop.IOLoop.current().set_default_executor(ThreadPoolExecutor(max_workers=4))
     tornado.ioloop.IOLoop.current().start()

@@ -1,10 +1,11 @@
 # coding: utf-8
+import json
+import os
 from abc import ABC
 
-import json
-
-import tornado.web
+import psutil
 import tornado.escape
+import tornado.web
 
 
 class JsonHandler(tornado.web.RequestHandler, ABC):
@@ -24,4 +25,4 @@ class JsonHandler(tornado.web.RequestHandler, ABC):
 
 
 class BaseHandler(JsonHandler, ABC):
-    pass
+    __process__ = psutil.Process(os.getpid())
