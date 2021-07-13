@@ -1,23 +1,23 @@
 # coding: utf-8
+import asyncio
 import datetime
 import math
 from abc import ABC
 from concurrent.futures import ThreadPoolExecutor
+import concurrent
 
 import tornado
 from tornado.gen import with_timeout
 
 from handler.base_handler import BaseHandler
-from handler.payload import *
 
 
-class ThreadPoolTimeoutHandler(BaseHandler, ABC):
+class NativeThreadPoolTimeoutHandler(BaseHandler, ABC):
     __mem_space__ = []
-    executor = ThreadPoolExecutor(max_workers=4)
+    executor = ThreadPoolExecutor(max_workers=1)
 
-    @run_on_executor
     def heavy_blocking_task(self):
-        tornado.gen.sleep(3)
+        # await asyncio.sleep(3)
         for i in range(300000000):
             pass
         print("pool: heavy task done")
@@ -31,17 +31,26 @@ class ThreadPoolTimeoutHandler(BaseHandler, ABC):
         ts = math.floor(datetime.datetime.timestamp(now) * 1000)
         print('pre-payload', ts - int(self.request.arguments.get('ts')[0]))
 
-        task = self.heavy_blocking_task()
+        # ft = asyncio.ensure_future(self.heavy_blocking_task())
+        ft = self.executor.submit(self.heavy_blocking_task)
+        # task = self.heavy_blocking_task()
+        # ft = self.executor.submit(task)
         # ft = self.executor.submit(self.heavy_blocking_task)
         try:
-            await with_timeout(datetime.timedelta(seconds=0.5), task, quiet_exceptions=tornado.gen.TimeoutError)
+            # concurrent.futures.wait()
+            # await asyncio.wait([ft], timeout=0.5)
+            await with_timeout(datetime.timedelta(seconds=0.5), ft, quiet_exceptions=tornado.gen.TimeoutError)
         except tornado.gen.TimeoutError:
+            ft.cancel()
+            print('cancel:', ft.cancel())
+            print('running:', ', canceled:', ft.cancelled())
+            pass
             # ft = asyncio.Future()
             # ft.cancelled()
             # task.cancel('timeout')
-            print('cancel: ', task.cancel())
+            # print('cancel: ', task)
             # ft.cancel()
-            print('task cancelled:', task.cancelled(), ', task done:', task.done())
+            # print('task cancelled:', task.cancelled(), ', task done:', task.done())
             # print('task result:', task.result())
             # print('task cancelled:', ft.cancelled(), ', task done:', ft.done())
             # print('task type:', type(task))

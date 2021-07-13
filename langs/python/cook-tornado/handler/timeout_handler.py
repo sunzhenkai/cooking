@@ -16,7 +16,7 @@ class TimeoutHandler(BaseHandler, ABC):
 
     @run_on_executor
     def heavy_blocking_task(self):
-        for i in range(1000000000):
+        for i in range(100000000):
             pass
         print("heavy task done")
 
