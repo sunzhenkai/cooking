@@ -13,6 +13,7 @@ from engine.custome_application import RouterApplication, BaseApplication
 from handler.benchmark_handler import NoCoroutineHandler
 from handler.heavy_task.thread_pool_timeout_cut_handler import CutThreadPoolTimeoutHandler
 from handler.heavy_task.thread_pool_timeout_native_handler import NativeThreadPoolTimeoutHandler
+from handler.heavy_task.thread_pool_timeout_test_handler import TestThreadPoolTimeoutHandler
 from handler.truncation_handler import TruncationHandler
 from handler.heavy_task.block_main_ioloop_handler import BlockMainIOLoopHandler
 from handler.heavy_task.thread_pool_handler import ThreadPoolHandler
@@ -33,6 +34,7 @@ def create_app():
         (r'/api/cook/heavy/timeout', ThreadPoolTimeoutHandler, {}),
         (r'/api/cook/heavy/native', NativeThreadPoolTimeoutHandler, {}),
         (r'/api/cook/heavy/cut', CutThreadPoolTimeoutHandler, {}),
+        (r'/api/cook/heavy/test', TestThreadPoolTimeoutHandler, {}),
         (r'/api/cook/truncation', TruncationHandler, {}),
     ]
 

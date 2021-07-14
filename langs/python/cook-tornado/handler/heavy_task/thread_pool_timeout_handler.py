@@ -1,4 +1,6 @@
 # coding: utf-8
+import asyncio
+import concurrent.futures
 import datetime
 import math
 from abc import ABC
@@ -8,16 +10,16 @@ import tornado
 from tornado.gen import with_timeout
 
 from handler.base_handler import BaseHandler
-from handler.payload import *
 
 
 class ThreadPoolTimeoutHandler(BaseHandler, ABC):
     __mem_space__ = []
-    executor = ThreadPoolExecutor(max_workers=4)
+    executor = ThreadPoolExecutor(max_workers=1)
 
-    @run_on_executor
+    # @run_on_executor
     def heavy_blocking_task(self):
-        tornado.gen.sleep(3)
+        # tornado.gen.sleep(3)
+        print("pool: heavy task start")
         for i in range(300000000):
             pass
         print("pool: heavy task done")
@@ -31,20 +33,24 @@ class ThreadPoolTimeoutHandler(BaseHandler, ABC):
         ts = math.floor(datetime.datetime.timestamp(now) * 1000)
         print('pre-payload', ts - int(self.request.arguments.get('ts')[0]))
 
-        task = self.heavy_blocking_task()
-        # ft = self.executor.submit(self.heavy_blocking_task)
+        # task = self.heavy_blocking_task()
+        ft = self.executor.submit(self.heavy_blocking_task)
+        # concurrent.futures.wait([ft], timeout=2)
+        # if not ft.done():
+        #     ft.cancel()
+        # print(ft)
         try:
-            await with_timeout(datetime.timedelta(seconds=0.5), task, quiet_exceptions=tornado.gen.TimeoutError)
+            await with_timeout(datetime.timedelta(seconds=2), ft, quiet_exceptions=tornado.gen.TimeoutError)
         except tornado.gen.TimeoutError:
             # ft = asyncio.Future()
-            # ft.cancelled()
-            # task.cancel('timeout')
-            print('cancel: ', task.cancel())
-            # ft.cancel()
-            print('task cancelled:', task.cancelled(), ', task done:', task.done())
-            # print('task result:', task.result())
-            # print('task cancelled:', ft.cancelled(), ', task done:', ft.done())
-            # print('task type:', type(task))
+            ft.cancel()
+        # task.cancel('timeout')
+        # print('cancel: ', task.cancel())
+        # ft.cancel()
+        # print('task cancelled:', task.cancelled(), ', task done:', task.done())
+        # print('task result:', task.result())
+        # print('task cancelled:', ft.cancelled(), ', task done:', ft.done())
+        # print('task type:', type(task))
 
         print('done at', self.request.request_time())
         self.write({'msg': 'ok'})
