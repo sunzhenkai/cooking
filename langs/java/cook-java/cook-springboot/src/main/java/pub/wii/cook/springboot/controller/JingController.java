@@ -23,16 +23,19 @@ public class JingController {
     @lombok.Data
     static class Data {
         String ticket;
+        String name;
+        Integer age;
     }
 
     @lombok.Data
     static class Res {
-        String success;
+        Boolean success;
         Error error;
         Data data;
     }
 
     private static Res res;
+    private static Res resTrue;
 
     static {
         res = new Res();
@@ -41,9 +44,16 @@ public class JingController {
         Error error = new Error();
         error.setCode("10003016");
         error.setMessage("用户需要滑块验证");
-        res.setSuccess("false");
+        res.setSuccess(false);
         res.setData(data);
         res.setError(error);
+
+        resTrue = new Res();
+        data = new Data();
+        data.setName("刘德华");
+        data.setAge(18);
+        resTrue.setSuccess(true);
+        resTrue.setData(data);
     }
 
     @CrossOrigin(maxAge = 1, methods = {RequestMethod.POST, RequestMethod.GET})
@@ -61,6 +71,6 @@ public class JingController {
     }, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Res> thirdAuthOpenIdLoginWithMobile() {
-        return ResponseEntity.ok(res);
+        return ResponseEntity.ok(resTrue);
     }
 }

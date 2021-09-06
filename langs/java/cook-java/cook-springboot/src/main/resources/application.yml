@@ -13,6 +13,8 @@ spring:
 #    cluster:
 #      nodes: localhost:6379
     password:
+  jackson:
+    default-property-inclusion: non_null
 
 test:
   password: secret:test-decrypt-passwd
