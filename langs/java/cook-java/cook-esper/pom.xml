@@ -5,8 +5,10 @@
     <parent>
         <artifactId>cook-java</artifactId>
         <groupId>pub.wii.cook</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>cook-esper</artifactId>

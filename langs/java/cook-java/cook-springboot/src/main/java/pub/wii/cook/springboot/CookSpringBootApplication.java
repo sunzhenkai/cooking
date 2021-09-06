@@ -7,6 +7,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
+import pub.wii.cook.springboot.service.iface.TypeService;
+
+import java.util.Map;
 
 @SpringBootApplication
 @EnableSpringConfigured
@@ -19,5 +22,8 @@ public class CookSpringBootApplication {
 
         RedisProperties redisProperties = (RedisProperties) context.getBean("testBean");
         System.out.println(redisProperties.getPassword());
+
+        Map<String, TypeService> c =  context.getBeansOfType(TypeService.class);
+        System.out.println(c);
     }
 }
