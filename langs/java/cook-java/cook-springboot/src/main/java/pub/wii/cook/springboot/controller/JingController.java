@@ -16,7 +16,7 @@ public class JingController {
 
     @lombok.Data
     static class Error {
-        String code;
+        Integer code;
         String message;
     }
 
@@ -42,7 +42,7 @@ public class JingController {
         Data data = new Data();
         data.setTicket(UUID.randomUUID().toString());
         Error error = new Error();
-        error.setCode("10003016");
+        error.setCode(10003018);
         error.setMessage("用户需要滑块验证");
         res.setSuccess(false);
         res.setData(data);
@@ -71,6 +71,14 @@ public class JingController {
     }, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Res> thirdAuthOpenIdLoginWithMobile() {
+        return ResponseEntity.ok(resTrue);
+    }
+
+    @CrossOrigin(maxAge = 1, methods = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "thirdAuthMobileLogin", method = {RequestMethod.POST, RequestMethod.GET},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Res> thirdAuthMobileLogin() {
         return ResponseEntity.ok(resTrue);
     }
 }
