@@ -11,14 +11,16 @@ from engine.custome_application import RouterApplication, BaseApplication
 # from handler.benchmark_handler import TornadoCoroutineHandler, NativeCoroutineHandler, NoCoroutineHandler, \
 #     NativeCoroutineTaskHandler, NativeCoroutineTaskTruncationHandler
 from handler.benchmark_handler import NoCoroutineHandler
-from handler.heavy_task.thread_pool_timeout_cut_handler import CutThreadPoolTimeoutHandler
-from handler.heavy_task.thread_pool_timeout_native_handler import NativeThreadPoolTimeoutHandler
-from handler.heavy_task.thread_pool_timeout_test_handler import TestThreadPoolTimeoutHandler
-from handler.truncation_handler import TruncationHandler
+from handler.biz_handler import BizHandler
 from handler.heavy_task.block_main_ioloop_handler import BlockMainIOLoopHandler
 from handler.heavy_task.thread_pool_handler import ThreadPoolHandler
+from handler.heavy_task.thread_pool_timeout_cut_handler import CutThreadPoolTimeoutHandler
 from handler.heavy_task.thread_pool_timeout_handler import ThreadPoolTimeoutHandler
+from handler.heavy_task.thread_pool_timeout_native_handler import NativeThreadPoolTimeoutHandler
+from handler.heavy_task.thread_pool_timeout_test_handler import TestThreadPoolTimeoutHandler
+from handler.navite_handler import NativeHandler
 from handler.timeout_handler import TimeoutHandler
+from handler.truncation_handler import TruncationHandler
 
 
 def create_app():
@@ -36,6 +38,8 @@ def create_app():
         (r'/api/cook/heavy/cut', CutThreadPoolTimeoutHandler, {}),
         (r'/api/cook/heavy/test', TestThreadPoolTimeoutHandler, {}),
         (r'/api/cook/truncation', TruncationHandler, {}),
+        (r'/api/cook/native', NativeHandler, {}),
+        (r'/api/cook/biz', BizHandler, {}),
     ]
 
     asyncio.set_event_loop_policy(
