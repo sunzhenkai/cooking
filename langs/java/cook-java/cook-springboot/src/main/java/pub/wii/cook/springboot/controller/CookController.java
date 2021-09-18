@@ -1,6 +1,6 @@
 package pub.wii.cook.springboot.controller;
 
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,13 +9,24 @@ import pub.wii.cook.springboot.model.EchoResponse;
 import pub.wii.cook.springboot.redis.RedisTest;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("cook")
-@AllArgsConstructor
 public class CookController {
 
     RedisTest redisTest;
+
+    @Value("${ext.name:not set}")
+    private String external;
+
+    @Value("${spring.config.additional-location:not set}")
+    private String location;
+
+    public CookController(RedisTest redisTest) {
+        this.redisTest = redisTest;
+    }
 
     @CrossOrigin(maxAge = 4800)
     @RequestMapping(value = "check",
@@ -45,5 +56,16 @@ public class CookController {
     public Object redisEcho(HttpServletRequest request, @RequestParam("value") Integer value) {
         redisTest.setI("redis-echo", value);
         return redisTest.getI("redis-echo");
+    }
+
+    @RequestMapping(value = "props",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Map<String, String>> props() {
+        Map<String, String> res = new HashMap<>();
+        res.put("external", external);
+        res.put("location", location);
+        return ResponseEntity.ok(res);
     }
 }

@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "test.password",
+      "type": "java.lang.String",
+      "description": "Description for test.password."
+    },
+    {
+      "name": "config.additional",
+      "type": "java.lang.String",
+      "description": "Description for config.additional."
+    }
+  ]
+}

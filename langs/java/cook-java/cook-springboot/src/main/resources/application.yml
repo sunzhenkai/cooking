@@ -1,4 +1,6 @@
 spring:
+  #  config:
+  #    additional-location: /Users/wii/Data/conf/application.yml
   redis:
     database: 0
     lettuce:
@@ -10,8 +12,8 @@ spring:
       shutdown-timeout: 100ms
     host: 127.0.0.1
     port: 6379
-#    cluster:
-#      nodes: localhost:6379
+    #    cluster:
+    #      nodes: localhost:6379
     password:
   jackson:
     default-property-inclusion: non_null
@@ -19,3 +21,6 @@ spring:
 test:
   password: secret:test-decrypt-passwd
 
+config:
+  additional:
+    - /Users/wii/Data/conf/external.yml
