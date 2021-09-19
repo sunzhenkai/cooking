@@ -9,6 +9,12 @@ import org.springframework.core.env.PropertySource;
 
 import java.util.HashMap;
 
+/**
+ * 自定义解密
+ *
+ * 在配置文件中，配置一个带有特定前缀的值，前缀后为加密数据
+ * 将加密数据解密后（调用解密服务 OR sth.），写入环境变量
+ */
 public class EnvironmentPostProcessorExample implements EnvironmentPostProcessor {
     private static final String PREFIX_SECRET = "secret:";
 
