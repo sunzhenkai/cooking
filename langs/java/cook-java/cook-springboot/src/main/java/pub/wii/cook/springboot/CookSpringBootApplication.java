@@ -14,7 +14,7 @@ import java.util.Map;
 @SpringBootApplication
 @EnableSpringConfigured
 @EnableAspectJAutoProxy
-@ComponentScan(basePackages = "pub.wii.cook")
+@ComponentScan(basePackages = "pub.wii.cook", lazyInit = true)
 public class CookSpringBootApplication {
 
     public static void main(String[] args) {
