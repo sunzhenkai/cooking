@@ -1,11 +1,11 @@
 package pub.wii.cook.springboot.es;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 import org.springframework.stereotype.Component;
-import pub.wii.cook.springboot.service.ESService;
+
+import javax.annotation.Resource;
 
 @EnableSpringConfigured
 @EnableAspectJAutoProxy
@@ -13,7 +13,7 @@ import pub.wii.cook.springboot.service.ESService;
 @Component
 public class Startup {
 
-    @Autowired
+    @Resource
     ESService esService;
 
     public static void main(String[] args) {

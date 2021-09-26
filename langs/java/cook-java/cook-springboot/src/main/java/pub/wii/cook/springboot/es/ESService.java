@@ -1,4 +1,4 @@
-package pub.wii.cook.springboot.service;
+package pub.wii.cook.springboot.es;
 
 import lombok.Getter;
 import org.apache.http.HttpHost;

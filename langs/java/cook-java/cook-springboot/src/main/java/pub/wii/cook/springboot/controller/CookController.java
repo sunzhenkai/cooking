@@ -21,8 +21,14 @@ public class CookController {
     @Value("${ext.name:not set}")
     private String external;
 
-    @Value("${spring.config.additional-location:not set}")
+    @Value("prefix-${spring.config.additional-location:not set}")
     private String location;
+
+    @Value("prefix-#{ T(java.net.InetAddress).getLocalHost().getHostName() }")
+    private String hostName;
+
+    @Value("#{T(pub.wii.cook.springboot.config.Constants).C_VAR}")
+    private String foo;
 
     public CookController(RedisTest redisTest) {
         this.redisTest = redisTest;
@@ -66,6 +72,8 @@ public class CookController {
         Map<String, String> res = new HashMap<>();
         res.put("external", external);
         res.put("location", location);
+        res.put("hostname", hostName);
+        res.put("foo", foo);
         return ResponseEntity.ok(res);
     }
 }

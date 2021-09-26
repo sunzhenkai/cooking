@@ -24,3 +24,5 @@ test:
 config:
   additional:
     - /Users/wii/Data/conf/external.yml
+server:
+  port: 9000
