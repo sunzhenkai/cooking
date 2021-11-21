@@ -29,4 +29,9 @@ public class ConsumerExample {
     public void exampleAB(String in) {
         System.out.println("received c: " + in);
     }
+
+    @KafkaListener(id = "example", topics = "example-a")
+    public void exampleAAB(String in) {
+        System.out.println("received c: " + in);
+    }
 }

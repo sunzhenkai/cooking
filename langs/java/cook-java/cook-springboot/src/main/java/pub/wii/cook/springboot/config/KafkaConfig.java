@@ -17,6 +17,8 @@ public class KafkaConfig {
         Map<String, Object> configs = new HashMap<>();
         // 多个 broker: localhost:9092,localhost:9093
         configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        configs.put(AdminClientConfig.RETRIES_CONFIG, 3);
+        configs.put(AdminClientConfig.CLIENT_ID_CONFIG, "cook.java");
         return new KafkaAdmin(configs);
     }
 

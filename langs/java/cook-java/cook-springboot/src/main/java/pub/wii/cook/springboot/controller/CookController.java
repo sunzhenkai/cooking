@@ -1,6 +1,7 @@
 package pub.wii.cook.springboot.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -75,5 +76,19 @@ public class CookController {
         res.put("hostname", hostName);
         res.put("foo", foo);
         return ResponseEntity.ok(res);
+    }
+
+    @RequestMapping(value = "referrer",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Object referrer(HttpServletRequest request) {
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("referrer", "https://www.so.com");
+        responseHeaders.set("referer", "https://www.so.com");
+
+        return ResponseEntity.ok()
+                .headers(responseHeaders)
+                .body("referrer");
     }
 }

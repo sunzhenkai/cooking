@@ -36,6 +36,7 @@ public class KafkaController {
         f.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
             @Override
             public void onFailure(@SuppressWarnings("NullableProblems") Throwable throwable) {
+                System.out.println("ckpt; failure");
                 keeper.result = "send message failed";
                 synchronized (mutex) {
                     mutex.notify();
@@ -47,7 +48,8 @@ public class KafkaController {
                 keeper.result = "send message success";
                 synchronized (mutex) {
                     mutex.notify();
-                }            }
+                }
+            }
         });
 
         synchronized (mutex) {
