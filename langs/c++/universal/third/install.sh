@@ -7,6 +7,9 @@ deps_dir=${work_dir}/deps
 src_dir=${work_dir}/src
 build_dir=${work_dir}/build
 
+[ ! -e "$deps_dir" ] && mkdir -p "$deps_dir"
+[ ! -e "$build_dir" ] && mkdir -p "$build_dir"
+
 make_thread_num="$(tool::get_cpu_num)"
 
 export LDFLAGS="-L${deps_dir}/lib"
@@ -20,19 +23,19 @@ export C_INCLUDE_PATH="${deps_dir}/include:${C_INCLUDE_PATH}"
 export PATH=${deps_dir}/bin:$PATH
 
 #flag_clean="Y"
-#flag_concat_boost="Y"
-#flag_openssl="Y"
-#flag_gflags="Y"
-#flag_glog="Y"
-#flag_boost="Y"
-#flag_event="Y"
-#flag_proto="Y"
+flag_concat_boost="Y"
+flag_openssl="Y"
+flag_gflags="Y"
+flag_glog="Y"
+flag_boost="Y"
+flag_event="Y"
+flag_proto="Y"
 flag_bison="Y"
-#flag_thrift="Y"
-#flag_leveldb="Y"
-#flag_googletest="Y"
-#flag_brpc="Y"
-#flag_flex="Y"
+flag_thrift="Y"
+flag_leveldb="Y"
+flag_googletest="Y"
+flag_brpc="Y"
+flag_flex="Y"
 
 # thrift_version=0.9.3.1
 thrift_version=0.11.0
