@@ -1,6 +1,7 @@
 package pub.wii.cook.springboot.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +16,17 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("cook")
+// matchIfMissing=true: 如果没有定义变量也算满足条件
+@ConditionalOnProperty(name = "metric.monitor.enable", matchIfMissing = true)
 public class CookController {
 
     RedisTest redisTest;
 
     @Value("${ext.name:not set}")
     private String external;
+
+    @Value("${metric.monitor.enable:false}")
+    private String metric;
 
     @Value("prefix-${spring.config.additional-location:not set}")
     private String location;
@@ -75,6 +81,7 @@ public class CookController {
         res.put("location", location);
         res.put("hostname", hostName);
         res.put("foo", foo);
+        res.put("metric", metric);
         return ResponseEntity.ok(res);
     }
 
