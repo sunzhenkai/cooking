@@ -60,7 +60,6 @@ public class RSAUtil {
     }
 
     public static byte[] decryptNew(byte[] content, PrivateKey privateKey) throws Exception {
-
         Cipher cipher = Cipher.getInstance("RSA");
         int MAX_ENCRYPT_BLOCK = 256;
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
@@ -95,26 +94,33 @@ public class RSAUtil {
         byte[] merge = new byte[encodeSecretStr.length + dst.length];
         System.arraycopy(dst, 0, merge, 0, dst.length);
         System.arraycopy(encodeSecretStr, 0, merge, dst.length, encodeSecretStr.length);
-        return new String(merge);
+        return Base64.getEncoder().encodeToString(merge);
     }
 
     @SneakyThrows
     public static String decode(String msg, String priK) {
-        String encrypt = Base64.getEncoder().encodeToString(msg.getBytes());
-        return rSADecodeSecretNewV2(encrypt, priK);
+        return rSADecodeSecretNewV2(msg, priK);
     }
 
     @SneakyThrows
     public static void main(String[] args) {
         Map<String, String> map = new HashMap<>();
-        map.put("Version", "1.00");
-        map.put("No", "10092");
+        map.put("Amount", "1.00");
+        map.put("OriginalSerialNo", "2021090312334866");
+//        map.put("OriginalDate", "20210903");
+//        map.put("MerId", "403110159659233");
+//        map.put("SerialNo", "2021090315265642");
         String encodeMsg = new Gson().toJson(map);
+
         String prk = "";
         String pubK = "";
+        String v = encode(encodeMsg, pubK);
+        System.out.println(v);
+        System.out.println(decode(v, prk));
+
         PublicKey publicKey = RSAUtil.getPublicKey(pubK);
         byte[] encodeSecretStr = RSAUtil.encryptNew(encodeMsg.getBytes(StandardCharsets.UTF_8), publicKey);
-        // 对加密后的数据 encodeSecretStr 进行签名
+//        // 对加密后的数据 encodeSecretStr 进行签名
         MessageDigest msgDst = MessageDigest.getInstance("SHA-256");
         msgDst.update(encodeSecretStr);
         byte[] dst = msgDst.digest();
@@ -122,6 +128,7 @@ public class RSAUtil {
         System.arraycopy(dst, 0, merge, 0, dst.length);
         System.arraycopy(encodeSecretStr, 0, merge, dst.length, encodeSecretStr.length);
 
+        System.out.println(new String(merge));
         String encrypt = Base64.getEncoder().encodeToString(merge);
         System.out.println(rSADecodeSecretNew(encrypt, prk));
     }
@@ -169,9 +176,29 @@ public class RSAUtil {
         MessageDigest dst_key = MessageDigest.getInstance("SHA-256");
         dst_key.update(encodeSecretStr_base64_bytes);
         Validate.isTrue(MessageDigest.isEqual(dstBase64_bytes, dst_key.digest()), "decode failed");
+
         // 还原加密字符串
         PrivateKey privateKey = RSAUtil.getPrivateKey(pk);
         byte[] data = RSAUtil.decryptNew(encodeSecretStr_base64_bytes, privateKey);
         return new String(data, StandardCharsets.UTF_8);
+
+        // Base64转码
+//        byte[] merge = Base64.getDecoder().decode(mergedBase64);
+//        // 声明定义密文数组
+//        byte[] encodeSecretStr_base64_bytes = new byte[merge.length - 32];
+//        // 声明签名数组
+//        byte[] dstBase64_bytes = new byte[32];
+//        // 获得签名数组
+//        System.arraycopy(merge, 0, dstBase64_bytes, 0, 32);
+//        // 获得密文数组
+//        System.arraycopy(merge, 32, encodeSecretStr_base64_bytes, 0, merge.length - 32);
+//        // 对签名进行验证
+//        MessageDigest dst_key = MessageDigest.getInstance("SHA-256");
+//        dst_key.update(encodeSecretStr_base64_bytes);
+//        Validate.isTrue(MessageDigest.isEqual(dstBase64_bytes, dst_key.digest()), "decode failed");
+//        // 还原加密字符串
+//        PrivateKey privateKey = RSAUtil.getPrivateKey(pk);
+//        byte[] data = RSAUtil.decryptNew(encodeSecretStr_base64_bytes, privateKey);
+//        return new String(data, StandardCharsets.UTF_8);
     }
 }
