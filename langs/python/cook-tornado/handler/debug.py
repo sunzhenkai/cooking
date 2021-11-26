@@ -13,5 +13,6 @@ class DebugHandler(BaseHandler, ABC):
 
     async def get(self):
         self.write({
-            'ms': self.get_query_argument('ts')
+            'ts': self.get_query_argument('ts'),
+            'tb': self.get_query_argument('tb')
         })

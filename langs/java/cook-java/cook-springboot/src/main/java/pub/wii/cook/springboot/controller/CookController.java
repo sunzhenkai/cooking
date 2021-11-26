@@ -25,6 +25,12 @@ public class CookController {
     @Value("${ext.name:not set}")
     private String external;
 
+    @Value("${rsa.public-key:not set}")
+    private String publicKey;
+
+    @Value("${rsa.private-key:not set}")
+    private String privateKey;
+
     @Value("${metric.monitor.enable:false}")
     private String metric;
 
@@ -82,6 +88,8 @@ public class CookController {
         res.put("hostname", hostName);
         res.put("foo", foo);
         res.put("metric", metric);
+        res.put("public-key", publicKey);
+        res.put("private-key", privateKey);
         return ResponseEntity.ok(res);
     }
 
