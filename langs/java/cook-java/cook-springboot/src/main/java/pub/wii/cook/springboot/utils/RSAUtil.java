@@ -2,6 +2,7 @@ package pub.wii.cook.springboot.utils;
 
 import com.google.gson.Gson;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@Slf4j
 public class RSAUtil {
     public static PublicKey getPublicKey(String publicKey) throws Exception {
         byte[] keyBytes = Base64.getDecoder().decode(publicKey);
@@ -85,6 +87,7 @@ public class RSAUtil {
 
     @SneakyThrows
     public static String encode(String msg, String pubK) {
+        log.info("public key = {}, msg = {}", pubK, msg);
         PublicKey publicKey = RSAUtil.getPublicKey(pubK);
         byte[] encodeSecretStr = RSAUtil.encryptNew(msg.getBytes(StandardCharsets.UTF_8), publicKey);
         // 对加密后的数据 encodeSecretStr 进行签名
@@ -99,6 +102,7 @@ public class RSAUtil {
 
     @SneakyThrows
     public static String decode(String msg, String priK) {
+        log.info("private key = {}, msg = {}", priK, msg);
         return rSADecodeSecretNewV2(msg, priK);
     }
 
