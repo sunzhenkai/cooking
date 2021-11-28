@@ -11,8 +11,8 @@ import pub.wii.cook.springboot.utils.RSAUtil;
 
 @Slf4j
 @RestController
-@RequestMapping("/rsa")
-public class RSAController {
+@RequestMapping("/api/rsa")
+public class RSAControllerV2 {
     @Data
     static class RSARequest {
         private String code;
@@ -41,16 +41,20 @@ public class RSAController {
     @CrossOrigin(maxAge = 1, methods = {RequestMethod.POST, RequestMethod.GET})
     @PostMapping(value = "encode", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<String> encodeA(@RequestBody RSARequest code) {
+    public ResponseEntity<RSARequest> encodeA(@RequestBody RSARequest code) {
         log.info("code={}", new Gson().toJson(code));
-        return ResponseEntity.ok(RSAUtil.encrypt(code.code, publicKey));
+        RSARequest r = new RSARequest();
+        r.setCode(RSAUtil.encrypt(code.code, publicKey));
+        return ResponseEntity.ok(r);
     }
 
     @CrossOrigin(maxAge = 1, methods = {RequestMethod.POST, RequestMethod.GET})
     @PostMapping(value = "decode", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<String> decodeA(@RequestBody RSARequest code) {
+    public ResponseEntity<RSARequest> decodeA(@RequestBody RSARequest code) {
         log.info("code={}", new Gson().toJson(code));
-        return ResponseEntity.ok(RSAUtil.decrypt(code.code, privateKey));
+        RSARequest r = new RSARequest();
+        r.setCode(RSAUtil.decrypt(code.code, privateKey));
+        return ResponseEntity.ok(r);
     }
 }
