@@ -21,6 +21,12 @@ spring:
 test:
   password: secret:test-decrypt-passwd
 
+#rsa:
+#  public-key: secret:public-key
+#  private-key: secret:secret-key
+
 config:
   additional:
     - /Users/wii/Data/conf/external.yml
+server:
+  port: 9000

@@ -1,6 +1,8 @@
 package pub.wii.cook.springboot.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,8 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("cook")
+// matchIfMissing=true: 如果没有定义变量也算满足条件
+@ConditionalOnProperty(name = "metric.monitor.enable", matchIfMissing = true)
 public class CookController {
 
     RedisTest redisTest;
@@ -21,8 +25,23 @@ public class CookController {
     @Value("${ext.name:not set}")
     private String external;
 
-    @Value("${spring.config.additional-location:not set}")
+    @Value("${rsa.public-key:not set}")
+    private String publicKey;
+
+    @Value("${rsa.private-key:not set}")
+    private String privateKey;
+
+    @Value("${metric.monitor.enable:false}")
+    private String metric;
+
+    @Value("prefix-${spring.config.additional-location:not set}")
     private String location;
+
+    @Value("prefix-#{ T(java.net.InetAddress).getLocalHost().getHostName() }")
+    private String hostName;
+
+    @Value("#{T(pub.wii.cook.springboot.config.Constants).C_VAR}")
+    private String foo;
 
     public CookController(RedisTest redisTest) {
         this.redisTest = redisTest;
@@ -66,6 +85,25 @@ public class CookController {
         Map<String, String> res = new HashMap<>();
         res.put("external", external);
         res.put("location", location);
+        res.put("hostname", hostName);
+        res.put("foo", foo);
+        res.put("metric", metric);
+        res.put("public-key", publicKey);
+        res.put("private-key", privateKey);
         return ResponseEntity.ok(res);
+    }
+
+    @RequestMapping(value = "referrer",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Object referrer(HttpServletRequest request) {
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("referrer", "https://www.so.com");
+        responseHeaders.set("referer", "https://www.so.com");
+
+        return ResponseEntity.ok()
+                .headers(responseHeaders)
+                .body("referrer");
     }
 }

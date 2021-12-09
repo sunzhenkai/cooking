@@ -12,6 +12,7 @@ from engine.custome_application import RouterApplication, BaseApplication
 #     NativeCoroutineTaskHandler, NativeCoroutineTaskTruncationHandler
 from handler.benchmark_handler import NoCoroutineHandler
 from handler.biz_handler import BizHandler
+from handler.debug import DebugHandler
 from handler.heavy_task.block_main_ioloop_handler import BlockMainIOLoopHandler
 from handler.heavy_task.thread_pool_handler import ThreadPoolHandler
 from handler.heavy_task.thread_pool_timeout_cut_handler import CutThreadPoolTimeoutHandler
@@ -40,6 +41,7 @@ def create_app():
         (r'/api/cook/truncation', TruncationHandler, {}),
         (r'/api/cook/native', NativeHandler, {}),
         (r'/api/cook/biz', BizHandler, {}),
+        (r'/api/cook/debug', DebugHandler, {}),
     ]
 
     asyncio.set_event_loop_policy(

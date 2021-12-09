@@ -16,14 +16,14 @@ import java.util.Map;
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages = "pub.wii.cook", lazyInit = true)
 public class CookSpringBootApplication {
-
     public static void main(String[] args) {
+        System.setProperty("metric.monitor.enable", "true");
         ApplicationContext context = SpringApplication.run(CookSpringBootApplication.class, args);
 
         RedisProperties redisProperties = (RedisProperties) context.getBean("testBean");
         System.out.println(redisProperties.getPassword());
 
-        Map<String, TypeService> c =  context.getBeansOfType(TypeService.class);
+        Map<String, TypeService> c = context.getBeansOfType(TypeService.class);
         System.out.println(c);
     }
 }

@@ -9,6 +9,16 @@
       "name": "config.additional",
       "type": "java.lang.String",
       "description": "Description for config.additional."
+    },
+    {
+      "name": "rsa.public-key",
+      "type": "java.lang.String",
+      "description": "Description for rsa.public-key."
+    },
+    {
+      "name": "rsa.private-key",
+      "type": "java.lang.String",
+      "description": "Description for rsa.private-key."
     }
   ]
 }
