@@ -30,3 +30,11 @@ config:
     - /Users/wii/Data/conf/external.yml
 server:
   port: 9000
+
+
+logging:
+  level:
+    org:
+      apache:
+        kafka:
+          clients: ERROR

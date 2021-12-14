@@ -1,15 +1,15 @@
 package pub.wii.cook.springboot.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+@Slf4j
 @Controller
 @RequestMapping("/api/passport/v1")
 public class JingController {
@@ -25,6 +25,7 @@ public class JingController {
         String ticket;
         String name;
         Integer age;
+        MultiValueMap<String, String> formData;
     }
 
     @lombok.Data
@@ -59,9 +60,17 @@ public class JingController {
     @CrossOrigin(maxAge = 1, methods = {RequestMethod.POST, RequestMethod.GET})
     @RequestMapping(value = "thirdAuthOpenIdLogin", method = {
             RequestMethod.POST, RequestMethod.GET
-    }, produces = MediaType.APPLICATION_JSON_VALUE)
+    },
+//            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<Res> thirdAuthOpenIdLogin() {
+    public ResponseEntity<Res> thirdAuthOpenIdLogin(
+            @RequestParam MultiValueMap<String, String> formData
+//            @RequestBody MultiValueMap<String, String> formData
+    ) {
+        log.info("thirdAuthOpenIdLogin. [formData={}]", formData);
+        res.getData().setFormData(formData);
         return ResponseEntity.ok(res);
     }
 
