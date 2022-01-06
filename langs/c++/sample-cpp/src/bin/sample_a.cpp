@@ -23,7 +23,7 @@ void f(A &a) {
     cout << "here 1" << endl;
 }
 
-void f(std::shared_ptr<A> &pa) {
+void f(std::shared_ptr<const A> &pa) {
     pa = std::make_shared<A>("hi b");
     cout << "make pa" << endl;
 //    const A* pta = new A("new pta");
@@ -53,6 +53,5 @@ int main() {
     A *ptr = nullptr;
     f(ptr);
     cout << "ptr: " << ptr << endl;
-//    cout << ptr->a << endl;
     return 0;
 }
