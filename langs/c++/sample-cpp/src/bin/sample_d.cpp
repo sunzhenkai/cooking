@@ -14,11 +14,42 @@ typedef std::unordered_map<uint64_t, uint64_t> UM;
 //    return f;
 //}
 
+class A {
+public:
+    int a;
+};
+
+typedef std::shared_ptr<A> SA;
+
 std::function<void()> fun(UM &um) {
     auto f = [&] {
         um.emplace(1, 2);
     };
     return f;
+}
+
+std::function<void()> fun(SA sa) {
+    auto f = [&] {
+        sa->a = 1;
+    };
+    return f;
+}
+
+
+std::function<void()> fun() {
+    std::shared_ptr<A> sa = std::make_shared<A>();
+    sa->a = 2;
+    auto f = [&, sa] {
+        std::cout << "sa-> " << sa->a << std::endl;
+        sa->a = 1;
+    };
+    return f;
+}
+
+void test() {
+    std::cout << "----- in test -----" << std::endl;
+    fun()();
+    std::cout << "----- out test -----" << std::endl;
 }
 
 int main() {
@@ -31,5 +62,6 @@ int main() {
     auto ff = fun(um);
     ff();
     std::cout << um[1] << std::endl;
+    test();
     return 0;
 }
