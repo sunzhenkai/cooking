@@ -14,7 +14,7 @@ object TestProtobuf {
       val fieldDescriptor = Planet.getDescriptor.findFieldByName(field.toString)
       // field value
       val value = planet.getField(fieldDescriptor)
-      println(value) // earth
+      println(value) // earth, galaxy
     })
   }
 }
