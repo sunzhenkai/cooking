@@ -15,4 +15,5 @@ add_executable(main src/bin/main.cpp)
 
 add_executable(sample_a src/bin/sample_a.cpp)
 add_executable(sample_b src/bin/sample_b.cpp)
-add_executable(sample src/bin/sample_h.cpp)
+add_executable(sample src/bin/sample_i.cpp)
+target_link_libraries(sample pthread)

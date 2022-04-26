@@ -4,7 +4,7 @@ target
 .classpath
 .idea
 build
-cmake-build-debug
+**/cmake-build-*
 *.swp
 vsprojects/*
 .vscode

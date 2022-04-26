@@ -54,3 +54,17 @@ message(STATUS "build ${_DEP_NAME}, T_CMAKE_PREFIX_PATH=${T_CMAKE_PREFIX_PATH}")
 list(APPEND EXTERNAL_LIST a)
 list(APPEND EXTERNAL_LIST b)
 message(STATUS "EXTERNAL_LIST=${EXTERNAL_LIST}")
+
+
+function(ARG4)
+    set(options OPTIONAL FAST)
+    set(oneValueArgs NAME URL)
+    set(multiValueArgs KEY)
+    cmake_parse_arguments(PREFIX "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+    message(STATUS "FAST=${PREFIX_FAST} NAME=${PREFIX_NAME} URL=${PREFIX_URL} KET=${PREFIX_KEY}")
+endfunction(ARG4)
+
+ARG4(
+        URL www.so.com
+        KEY band price
+)
