@@ -53,10 +53,20 @@ void test() {
 }
 
 int main() {
+    auto tp = std::make_tuple(1, 2, 3);
+    std::cout << std::get<0>(tp) << std::endl;
+
     std::map<int, int> m;
     m.emplace(1, 2);
     m.emplace(1, 3);
     std::cout << m[1] << std::endl;
+    m[1] = 3;
+    m[2] = 4;
+    std::cout << m[1] << " " << m[2] << std::endl;
+    m.insert({1, 4});
+    std::cout << m[1] << std::endl;
+
+    std::cout << "----" << std::endl;
 
     UM um;
     auto ff = fun(um);

@@ -26,6 +26,10 @@ std::pair<std::string, int> exec(const char *cmd) {
 }
 
 class A {
+    friend std::ostream &operator<<(std::ostream &os, const A &a) {
+        os << "hello " << a.v;
+        return os;
+    }
 public:
     std::atomic<bool> closed{false};
     int v;
@@ -66,11 +70,17 @@ namespace fs = std::filesystem;
 template<typename K, typename V>
 using Map = std::map<K, V>;
 
-void f(int a, int b=0) {
+void f(int a, int b = 0) {
     std::cout << a << " -- " << b << std::endl;
 }
 
 int main(int argc, char *argv[]) {
+    const A *ap = nullptr;
+    A aa(0);
+    ap = &aa;
+
+    std::cout << *ap << std::endl;
+
     f(1);
     f(1, 2);
     std::shared_mutex mtx;
