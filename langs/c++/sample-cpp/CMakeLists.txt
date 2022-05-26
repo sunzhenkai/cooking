@@ -11,9 +11,10 @@ if (${FUN_NOT_EXISTS_V})
     message(STATUS "TRUE")
 endif ()
 
+include_directories(src/bin)
 add_executable(main src/bin/main.cpp)
 
 add_executable(sample_a src/bin/sample_a.cpp)
 add_executable(sample_b src/bin/sample_b.cpp)
-add_executable(sample src/bin/sample_j.cpp)
+add_executable(sample src/bin/sample_defines.cpp)
 target_link_libraries(sample pthread)
