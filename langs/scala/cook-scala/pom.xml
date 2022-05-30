@@ -119,7 +119,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <!--                    <protocExecutable>protoc</protocExecutable>-->
-                    <protocArtifact>com.google.protobuf:protoc:3.7.1:exe:${os.detected.classifier}</protocArtifact>
+                    <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
                 </configuration>
                 <executions>
                     <execution>
