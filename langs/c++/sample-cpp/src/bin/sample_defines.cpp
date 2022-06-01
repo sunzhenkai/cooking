@@ -13,8 +13,20 @@ std::string f() {
     return "hello";
 }
 
+class A {
+public:
+    A() {
+        std::cout << "construct A" << std::endl;
+    }
+};
 
 int main() {
+    std::vector<A> av1;
+    av1.reserve(3);
+    std::cout << " --- " << std::endl;
+    av1.resize(3);
+    std::cout << " === " << std::endl;
+
     std::string ss = std::move(f());
     std::vector<std::string> vvs;
     vvs.emplace_back(std::move(f()));
