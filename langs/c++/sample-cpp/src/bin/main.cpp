@@ -3,6 +3,9 @@
 using namespace std;
 
 int main() {
-    cout << "hello world" << endl;
+    int a = 10;
+    std::string r;
+    r.append(std::to_string(a)).append("abc");
+    std::cout << r << std::endl;
     return 0;
 }
