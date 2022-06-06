@@ -5,6 +5,5 @@ import org.apache.parquet.hadoop.ParquetFileWriter
 
 object TestParquet {
   def main(args: Array[String]): Unit = {
-    val write = new ParquetFileWriter(new Configuration())
   }
 }
