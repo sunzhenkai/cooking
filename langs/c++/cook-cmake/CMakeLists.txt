@@ -24,3 +24,11 @@ message(STATUS "_DEP_SUB_B=${_DEP_SUB_B}")
 add_library(cook_cmake library.cpp)
 
 message(STATUS "${CMAKE_STATIC_LIBRARY_PREFIX} ${CMAKE_STATIC_LIBRARY_SUFFIX}")
+
+if (${CMAKE_CXX_STANDARD} LESS 20)
+    MESSAGE(STATUS "YES ${CMAKE_CXX_STANDARD}")
+endif ()
+
+set(HI "hi")
+set(HELLO HI)
+message(STATUS "HELLO=${HELLO}")
