@@ -24,6 +24,7 @@
         <module>cook-thrift-base</module>
         <module>cook-thrift-sample</module>
         <module>cook-es</module>
+        <module>cook-flink</module>
     </modules>
 
     <properties>
