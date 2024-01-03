@@ -9,5 +9,10 @@ bash "vcpkg/bootstrap-vcpkg.sh"
 
 # 编译
 ```shell
-cmake 
+mkdir build && cd build
+cmake -DCMAKE_TOOLCHAIN_FILE=/root/.local/vcpkg/scripts/buildsystems/vcpkg.cmake ..
+make -j 5
+
+# 运行
+./main
 ```
