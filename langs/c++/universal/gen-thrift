@@ -1,0 +1,6 @@
+#!/bin/bash
+set +x
+
+for i in `ls thrift/*.thrift`; do
+    third/deps/bin/thrift -r --gen cpp -o thrift "$i" 
+done

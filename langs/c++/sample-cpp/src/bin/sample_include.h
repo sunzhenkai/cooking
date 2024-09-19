@@ -1,0 +1,6 @@
+#ifndef SAMPLE_CPP_SAMPLE_INCLUDE_H
+#define SAMPLE_CPP_SAMPLE_INCLUDE_H
+
+#include "sample_class.h"
+
+#endif //SAMPLE_CPP_SAMPLE_INCLUDE_H

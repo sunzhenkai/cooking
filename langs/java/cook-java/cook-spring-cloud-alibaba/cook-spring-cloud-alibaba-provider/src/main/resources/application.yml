@@ -1,0 +1,15 @@
+server:
+  port: 10801
+
+spring:
+  application:
+    name: UserProvider
+
+dubbo:
+  scan:
+    base-packages: pub.wii.cook.provider.service
+  cloud:
+    subscribed-services: null
+  protocols:
+    dubbo:
+      port: -1

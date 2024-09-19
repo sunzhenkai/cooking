@@ -1,0 +1,40 @@
+spring:
+  #  config:
+  #    additional-location: /Users/wii/Data/conf/application.yml
+  redis:
+    database: 0
+    lettuce:
+      pool:
+        min-idle: 5
+        max-idle: 10
+        max-active: 8
+        max-wait: 1ms
+      shutdown-timeout: 100ms
+    host: 127.0.0.1
+    port: 6379
+    #    cluster:
+    #      nodes: localhost:6379
+    password:
+  jackson:
+    default-property-inclusion: non_null
+
+test:
+  password: secret:test-decrypt-passwd
+
+#rsa:
+#  public-key: secret:public-key
+#  private-key: secret:secret-key
+
+config:
+  additional:
+    - /Users/wii/Data/conf/external.yml
+server:
+  port: 9000
+
+
+logging:
+  level:
+    org:
+      apache:
+        kafka:
+          clients: ERROR

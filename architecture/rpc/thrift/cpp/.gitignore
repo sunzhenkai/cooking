@@ -1,0 +1,7 @@
+.idea
+third/src/boost_1_71_0.tar.gz
+build
+third/build
+third/deps
+**/.DS_Store
+**/*.swp

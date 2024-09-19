@@ -1,0 +1,3 @@
+org.springframework.boot.env.EnvironmentPostProcessor=\
+  pub.wii.cook.springboot.processor.EnvironmentPostProcessorExample,\
+  pub.wii.cook.springboot.processor.AdditionalConfigProcessor
